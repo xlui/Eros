@@ -1,8 +1,12 @@
 # Eros
 
-Spring-Boot based blog Eros.
+Spring-Boot based blog Eros. 
 
 [中文](README_zh.md)
+
+Develop with Intellij IDEA, spring boot 1.5.8.RELEASE, mariadb 10.1.29.
+
+spring boot dependencies: `spring-boot-starter-web`, `spring-boot-starter-thymeleaf` and `spring-boot-starter-data-jpa`.
 
 ## Demand Analysis
 
