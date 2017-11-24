@@ -1,4 +1,4 @@
-package dx.style.eros.model;
+package style.dx.eros.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
