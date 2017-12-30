@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="base::header(Eros)"/>
+    <link rel="stylesheet" th:href="@{css/index.css}"/>
+</head>
+<body>
+<div class="head_line"></div>
+
+<div class="container" id="main">
+    <div id="header"></div>
+
+    <div class="row t-center">
+        <!-- left -->
+        <div class="col-md-8" id="right_content">
+            <br/><br/>
+            <div class="list-group">
+                <a th:href="@{/}" class="list-group-item active">文章</a>
+                <!-- 初始化文章列表 -->
+                <!--/*@thymesVar id="articles" type="List<style.dx.eros.model.Article>"*/-->
+                <th:block th:each="var: ${articles}">
+                    <div class="list-group-item">
+                        <h4><a th:href="@{/article(id=${var.id})}">
+                            <th:block th:text="${var.title}"/>
+                        </a></h4>
+                        <br/>
+                        <span th:text="${var.date}">&nbsp;&nbsp;|</span>
+                        <br/><br/>
+                        <span th:text="${var.content}"></span>
+                        <br/><br/><br/>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+
+        <!-- center -->
+        <div>
+            <div class="col-md-1" id="center_content"></div>
+        </div>
+
+        <!-- right -->
+        <div class="col-md-3" id="left_content">
+            <th:block th:replace="base::sidebar(null, 'index')"/>
+        </div>
+        <!-- foot line -->
+    </div>
+
+    <div class="foot_line"></div>
+</div>
+
+<div id="footer">
+    <th:block th:replace="base::footer"/>
+</div>
+</body>
+</html>

@@ -6,11 +6,13 @@ Spring-Boot based blog Eros.
 
 Develop with Intellij IDEA, spring boot 1.5.8.RELEASE, mariadb 10.1.29.
 
-spring boot dependencies: `spring-boot-starter-web`, `spring-boot-starter-thymeleaf` and `spring-boot-starter-data-jpa`.
+Use Template Engine `Thymeleaf`, and `Spring Data JPA` for data access operations.
 
 ## Demand Analysis
 
 1. Database tables: article, sort, tag, user, access, comment
+
+![Database Diagram](Images/database.png)
 
 2. Pages: index, sort, tag, about, login
 

@@ -4,11 +4,13 @@ Spring Boot 开发的博客程序 Eros
 
 使用 Intellij IDEA 开发，Spring Boot 版本 1.5.8.RELEASE，Mariadb 版本 10.1.29
 
-Spring Boot 依赖的子项目：`spring-boot-starter-web`、`spring-boot-starter-thymeleaf` 以及 `spring-boot-starter-data-jpa`.
+使用 thymeleaf 做模板引擎，持久层使用 Spring Data JPA，前端使用 Bootstrap。
 
 ## 需求分析
 
-1、数据库表：文章表、分类、标签、用户、权限、评论
+1、数据库表：文章、分类、标签、用户、评论
+
+![Database Diagram](Images/database.png)
 
 2、具体页面：首页、分类页、标签页、关于页、登录页
  
