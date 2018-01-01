@@ -1,0 +1,56 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="base::header('分类 | Eros')"/>
+    <link rel="stylesheet" th:href="@{css/sort.css}"/>
+</head>
+<body>
+<th:block th:replace="base::masthead('sort')"/>
+
+<div class="container">
+    <th:block th:replace="base::head"/>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+            <th:block th:each="sort: ${sorts}">
+                <div class="blog-post">
+                    <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    &nbsp;&nbsp;
+                    <strong><th:block th:text="${sort.getSortName()}"/></strong>
+                    &nbsp;&nbsp;
+                    (<th:block th:text="${sort.getArticleSet().size()}"/>)
+                    <br/><br/>
+
+                    <div class="list-group">
+                        <th:block th:each="article: ${sort.getArticleSet()}">
+                            <li class="list-group-item">
+                                <div class="sort-item">
+                                    <div>
+                                        <a th:href="@{/article(id=${article.getId()})}"><th:block th:text="${article.getTitle()}"/></a>
+                                    </div>
+                                    <div class="article-time">
+                                        <img th:src="@{img/time.png}" alt=""/>
+                                        <th:block th:text="${article.getDate()}"/>
+                                    </div>
+                                </div>
+                            </li>
+                        </th:block>
+                    </div>
+                </div>
+            </th:block>
+
+            <!--<nav>-->
+                <!--<ul class="pager">-->
+                    <!--<li><a th:href="@{/}">上一篇</a></li>-->
+                    <!--<li><a th:href="@{/}">下一篇</a></li>-->
+                <!--</ul>-->
+            <!--</nav>-->
+        </div>
+
+        <th:block th:replace="base::side"/>
+    </div>
+</div>
+
+<th:block th:replace="base::footer"/>
+</body>
+</html>

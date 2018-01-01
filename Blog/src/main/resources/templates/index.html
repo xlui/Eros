@@ -1,54 +1,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="base::header(Eros)"/>
-    <link rel="stylesheet" th:href="@{css/index.css}"/>
 </head>
 <body>
-<div class="head_line"></div>
 
-<div class="container" id="main">
-    <div id="header"></div>
+<th:block th:replace="base::masthead('home')"/>
 
-    <div class="row t-center">
-        <!-- left -->
-        <div class="col-md-8" id="right_content">
-            <br/><br/>
-            <div class="list-group">
-                <a th:href="@{/}" class="list-group-item active">文章</a>
-                <!-- 初始化文章列表 -->
-                <!--/*@thymesVar id="articles" type="List<style.dx.eros.model.Article>"*/-->
-                <th:block th:each="var: ${articles}">
-                    <div class="list-group-item">
-                        <h4><a th:href="@{/article(id=${var.id})}">
-                            <th:block th:text="${var.title}"/>
-                        </a></h4>
-                        <br/>
-                        <span th:text="${var.date}">&nbsp;&nbsp;|</span>
-                        <br/><br/>
-                        <span th:text="${var.content}"></span>
-                        <br/><br/><br/>
-                    </div>
-                </th:block>
-            </div>
+<div class="container">
+    <th:block th:replace="base::head"/>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+            <th:block th:each="article: ${articles}">
+                <div class="blog-post">
+                    <h2 class="blog-post-title"><th:block th:text="${article.title}"/></h2>
+                    <p class="blog-post-meta"><th:block th:text="${article.date}"/></p>
+
+                    <p><th:block th:text="${article.content}"/></p>
+                </div>
+            </th:block>
+
+            <nav>
+                <ul class="pager">
+                    <li><a th:href="@{/}">上一篇</a></li>
+                    <li><a th:href="@{/}">下一篇</a></li>
+                </ul>
+            </nav>
         </div>
 
-        <!-- center -->
-        <div>
-            <div class="col-md-1" id="center_content"></div>
-        </div>
-
-        <!-- right -->
-        <div class="col-md-3" id="left_content">
-            <th:block th:replace="base::sidebar(null, 'index')"/>
-        </div>
-        <!-- foot line -->
+        <th:block th:replace="base::side"/>
     </div>
-
-    <div class="foot_line"></div>
 </div>
 
-<div id="footer">
-    <th:block th:replace="base::footer"/>
-</div>
+<th:block th:replace="base::footer"/>
 </body>
 </html>

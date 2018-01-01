@@ -7,72 +7,90 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
         <title th:text="${title}"></title>
-        <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}"/>
+        <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}"/>
         <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap-theme.css}"/>
         <link rel="stylesheet" th:href="@{css/main.css}"/>
     </th:block>
 </head>
 <body>
-<th:block th:fragment="sidebar(user, sidePosition)">
-    <!-- user area -->
-    <div id="title">
-        <h2><a th:href="@{/}">Eros</a></h2>
-        <th:block th:switch="${user}">
-            <h5 th:case="null" class="text-muted">Hello
-                <th:block th:text="Stranger"/>
-                !
-            </h5>
-            <h5 th:case="*" class="text-muted">Hello
-                <th:block th:text="${user}"/>
-                !
-            </h5>
-        </th:block>
-    </div>
 
-    <!-- author info -->
-    <div class="t-center" id="info">
-        <img src="/static/img/avatar.jpg" th:src="@{img/avatar.jpg}" alt="头像丢失" height="130" width="130"
-             class="img-circle"/>
+<th:block th:fragment="masthead(page)">
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="blog-nav">
+                <a class="blog-nav-item" th:href="@{/}" th:classappend="(${page} == 'home') ? 'active' : ''">博客</a>
+                <a class="blog-nav-item" th:href="@{/sort}" th:classappend="(${page} == 'sort') ? 'active' : ''">分类</a>
+                <a class="blog-nav-item" th:href="@{/tag}" th:classappend="(${page} == 'tag') ? 'active' : ''">标签</a>
+                <a class="blog-nav-item" th:href="@{/about}" th:classappend="(${page} == 'about') ? 'active' : ''">关于</a>
+            </nav>
+        </div>
+    </div>
+</th:block>
+
+<th:block th:fragment="head">
+    <div class="blog-header">
+        <h1 class="blog-title">Eros</h1>
+        <p class="lead blog-description">A blog project based spring boot.</p>
+    </div>
+</th:block>
+
+<th:block th:fragment="info">
+    <div class="sidebar-module sidebar-module-inset" align="center">
+        <img th:src="@{img/avatar.jpg}" alt="头像丢失" height="130" width="130" class="img-circle"/>
+        <br/><br/>
         <h4 class="text-muted">xlui</h4>
-        <h5 class="text-muted">Talk is cheap. Show me the code.</h5>
+        <h5 class="text-muted">Life is short, show me the code!</h5>
     </div>
-
-    <!-- features... -->
-    <div class="t-center"><br/></div>
-
-    <!-- navigation -->
-    <div id="list">
-        <table class="table table-hover t-center">
-            <tr class="" th:classappend="${sidePosition == 'index'} ? active : ''">
-                <td><a th:href="@{/index}"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;首页</a></td>
-            </tr>
-            <!--<tr class="" th:classappend="${sidePosition == ''} ? active : ''">-->
-            <!--</tr>-->
-        </table>
-    </div>
-    <br/>
 </th:block>
 
-<!-- footer -->
+<th:block th:fragment="social">
+    <div class="sidebar-module">
+        <h4>社交链接</h4>
+        <ol class="list-unstyled">
+            <li><a href="https://github.com/xlui">GitHub</a></li>
+            <li><a href="https://xlui.me">xlui 的博客</a></li>
+            <!--<li><a href="#"></a></li>-->
+        </ol>
+    </div>
+</th:block>
+
+<th:block th:fragment="side">
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <th:block th:replace="base::info"/>
+
+        <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+                <li><a href="#">March 2014</a></li>
+                <li><a href="#">February 2014</a></li>
+                <li><a href="#">January 2014</a></li>
+                <li><a href="#">December 2013</a></li>
+                <li><a href="#">November 2013</a></li>
+                <li><a href="#">October 2013</a></li>
+                <li><a href="#">September 2013</a></li>
+                <li><a href="#">August 2013</a></li>
+                <li><a href="#">July 2013</a></li>
+                <li><a href="#">June 2013</a></li>
+                <li><a href="#">May 2013</a></li>
+                <li><a href="#">April 2013</a></li>
+            </ol>
+        </div>
+
+        <th:block th:replace="base::social"/>
+    </div>
+</th:block>
+
 <th:block th:fragment="footer">
-    <div>
-        <a href="https://github.com/xlui/Eros"><img th:src="@{/img/github.png}" alt="图片加载失败" width="20px" height="20px"
-                                                    class="img-circle"/>Fork me on GitHub</a>
-        &nbsp;|
-        <a th:href="@{/}">Eros</a>
-        <br/>
-        Copyright © 2017
-    </div>
+    <footer class="blog-footer">
+        <p>Build by spring boot and bootstrap. Fork me on <a href="https://github.com/xlui/Eros">GitHub</a></p>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
 
-    <div class="r_div">
-        <a href="#">
-            <button class="btn btn-default">返回顶部</button>
-        </a>
-    </div>
+    <script type="text/javascript" th:src="@{jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{bootstrap/js/bootstrap.min.js}"></script>
 </th:block>
-
-<script type="text/javascript" th:src="@{jquery-3.2.1.min.js}"></script>
-<script type="text/javascript" th:src="@{bootstrap/js/bootstrap.min.js}"></script>
 
 </body>
 </html>

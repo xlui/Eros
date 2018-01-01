@@ -16,7 +16,7 @@ public class Article implements Serializable {
 	private String title;
 	private String content;
 
-	@ManyToOne(cascade = CascadeType.ALL, optional = true)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "sort_id")
 	private Sort sort;
 
