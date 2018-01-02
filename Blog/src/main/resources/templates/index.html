@@ -1,22 +1,31 @@
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="base::header(Eros)"/>
+    <th:block th:include="base::head(Eros)"/>
 </head>
 <body>
 
 <th:block th:replace="base::masthead('home')"/>
 
 <div class="container">
-    <th:block th:replace="base::head"/>
+    <!--<th:block th:replace="base::header"/>-->
 
     <div class="row">
         <div class="col-sm-8 blog-main">
+
+            <th:block th:replace="base::header"/>
+
+
             <th:block th:each="article: ${articles}">
                 <div class="blog-post">
-                    <h2 class="blog-post-title"><th:block th:text="${article.title}"/></h2>
+                    <h3 class="blog-post-title">
+                        <a th:href="@{'/article/' + ${article.getId()}}">
+                            <th:block th:text="${article.getTitle()}"/>
+                        </a>
+                    </h3>
                     <p class="blog-post-meta"><th:block th:text="${article.date}"/></p>
 
-                    <p><th:block th:text="${article.content}"/></p>
+                    <span class="content" th:text="${article.getContent()}"></span>
                 </div>
             </th:block>
 
@@ -33,5 +42,9 @@
 </div>
 
 <th:block th:replace="base::footer"/>
+
+<script th:src="@{~/js/marked.min.js}"></script>
+<script th:src="@{~/js/index.js}"></script>
+
 </body>
 </html>

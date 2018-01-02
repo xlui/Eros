@@ -13,13 +13,23 @@ INSERT INTO tag (id, tag_name) VALUES
   (2, "新标签");
 
 INSERT INTO article (content, date, title, sort_id) VALUES
-  ("Hello World", now(), "我的博客第一篇", 1);
+  ("Hello World!
+
+  `Hello`", now(), "我的博客第一篇", 1);
 
 INSERT INTO article (content, date, title, sort_id) VALUES
-  ("这是第二篇博客", now(), "Second", 2);
+  ("这是**第二篇**博客", now(), "Second", 2);
 
 INSERT INTO article (content, date, title, sort_id) VALUES
-  ("This is the third blog.", now(), "第三", 1);
+  ("This is the third blog.
+
+测试 markdown！
+
+`Hello World`
+
+[xlui 的博客](https://xlui.me)
+
+![xlui 的头像](https://xlui.me/images/avatar.jpg)", now(), "第三", 1);
 
 INSERT INTO t_tag_article (article_id, tag_id) VALUES
   (1, 1),

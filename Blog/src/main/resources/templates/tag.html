@@ -1,14 +1,14 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="base::header('标签 | Eros')"/>
+    <th:block th:replace="base::head('标签 | Eros')"/>
     <link rel="stylesheet" th:href="@{css/tag.css}"/>
 </head>
 <body>
 <th:block th:replace="base::masthead('tag')"/>
 
 <div class="container">
-    <th:block th:replace="base::head"/>
+    <th:block th:replace="base::header"/>
 
     <div class="row">
         <div class="col-sm-8 blog-main">
@@ -26,7 +26,7 @@
                             <li class="list-group-item">
                                 <div class="tag-item">
                                     <div>
-                                        <a th:href="@{/article(id=${article.getId()})}">
+                                        <a th:href="@{/article/{id}(id=${article.getId()})}">
                                             <th:block th:text="${article.getTitle()}"/>
                                         </a>
                                     </div>

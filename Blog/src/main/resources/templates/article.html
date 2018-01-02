@@ -1,0 +1,28 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="base::head(${article.getTitle()} + ' | Eros')"/>
+    <link rel="stylesheet" th:href="@{~/css/article.css}"/>
+</head>
+<body>
+<th:block th:replace="base::masthead(null)"/>
+
+<div class="container">
+    <th:block th:replace="base::header"/>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+            <span id="content" th:text="${article.getContent()}"></span>
+        </div>
+
+        <th:block th:replace="base::side"/>
+    </div>
+</div>
+
+<th:block th:replace="base::footer"/>
+
+<script th:src="@{~/js/marked.min.js}"></script>
+<script th:src="@{~/js/article.js}"></script>
+
+</body>
+</html>

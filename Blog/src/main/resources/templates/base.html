@@ -1,15 +1,15 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:fragment="header(title)">
+    <th:block th:fragment="head(title)">
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
         <title th:text="${title}"></title>
-        <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}"/>
-        <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap-theme.css}"/>
-        <link rel="stylesheet" th:href="@{css/main.css}"/>
+        <link rel="stylesheet" th:href="@{~/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{~/bootstrap/css/bootstrap-theme.css}"/>
+        <link rel="stylesheet" th:href="@{~/css/main.css}"/>
     </th:block>
 </head>
 <body>
@@ -27,7 +27,7 @@
     </div>
 </th:block>
 
-<th:block th:fragment="head">
+<th:block th:fragment="header">
     <div class="blog-header">
         <h1 class="blog-title">Eros</h1>
         <p class="lead blog-description">A blog project based spring boot.</p>
@@ -36,7 +36,7 @@
 
 <th:block th:fragment="info">
     <div class="sidebar-module sidebar-module-inset" align="center">
-        <img th:src="@{img/avatar.jpg}" alt="头像丢失" height="130" width="130" class="img-circle"/>
+        <img th:src="@{~/img/avatar.jpg}" alt="头像丢失" height="130" width="130" class="img-circle"/>
         <br/><br/>
         <h4 class="text-muted">xlui</h4>
         <h5 class="text-muted">Life is short, show me the code!</h5>
@@ -88,8 +88,8 @@
         </p>
     </footer>
 
-    <script type="text/javascript" th:src="@{jquery-3.2.1.min.js}"></script>
-    <script type="text/javascript" th:src="@{bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/bootstrap/js/bootstrap.min.js}"></script>
 </th:block>
 
 </body>
