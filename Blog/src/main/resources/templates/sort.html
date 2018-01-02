@@ -16,7 +16,9 @@
                 <div class="blog-post">
                     <span class="glyphicon glyphicon-triangle-bottom"></span>
                     &nbsp;&nbsp;
-                    <strong><th:block th:text="${sort.getSortName()}"/></strong>
+                    <a th:href="@{/sort/{sortName}(sortName=${sort.getSortName()})}">
+                        <strong><th:block th:text="${sort.getSortName()}"/></strong>
+                    </a>
                     &nbsp;&nbsp;
                     (<th:block th:text="${sort.getArticleList().size()}"/>)
                     <br/><br/>
@@ -31,7 +33,7 @@
                                         </a>
                                     </div>
                                     <div class="article-time">
-                                        <img th:src="@{img/time.png}" alt=""/>
+                                        <img th:src="@{~/img/time.png}" alt=""/>
                                         <th:block th:text="${article.getDate()}"/>
                                     </div>
                                 </div>

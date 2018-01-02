@@ -16,4 +16,9 @@ public class SortServiceImpl implements SortService {
 	public List<Sort> getSorts() {
 		return sortRepository.findAll();
 	}
+
+	@Override
+	public Sort getSortBySortName(String sortName) {
+		return sortRepository.getSortBySortName(sortName);
+	}
 }

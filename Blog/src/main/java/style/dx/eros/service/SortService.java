@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface SortService {
 	List<Sort> getSorts();
+
+	Sort getSortBySortName(String sortName);
 }
