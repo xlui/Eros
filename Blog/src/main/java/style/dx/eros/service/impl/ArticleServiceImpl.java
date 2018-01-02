@@ -1,6 +1,8 @@
 package style.dx.eros.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import style.dx.eros.entity.Article;
 import style.dx.eros.repository.ArticleRepository;
@@ -14,8 +16,8 @@ public class ArticleServiceImpl implements ArticleService {
 	private ArticleRepository articleRepository;
 
 	@Override
-	public List<Article> getArticles() {
-		return articleRepository.findAll();
+	public Page<Article> getArticles(PageRequest pageRequest) {
+		return articleRepository.findAll(pageRequest);
 	}
 
 	@Override

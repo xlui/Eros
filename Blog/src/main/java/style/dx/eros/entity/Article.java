@@ -1,9 +1,11 @@
 package style.dx.eros.entity;
 
+import style.dx.eros.utils.DateUtils;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Article implements Serializable {
@@ -23,22 +25,22 @@ public class Article implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "t_tag_article", joinColumns = @JoinColumn(name = "article_id", referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
-	private Set<Tag> tagSet;
+	private List<Tag> tagList;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "article")
-	private Set<Comment> commentSet;
+	private List<Comment> commentList;
 
 	public Article() {
 		super();
 	}
 
-	public Article(Date date, String title, String content, Sort sort, Set<Tag> tagSet, Set<Comment> commentSet) {
+	public Article(Date date, String title, String content, Sort sort, List<Tag> tagList, List<Comment> commentList) {
 		this.date = date;
 		this.title = title;
 		this.content = content;
 		this.sort = sort;
-		this.tagSet = tagSet;
-		this.commentSet = commentSet;
+		this.tagList = tagList;
+		this.commentList = commentList;
 	}
 
 	public Long getId() {
@@ -49,8 +51,8 @@ public class Article implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDate() {
-		return date;
+	public String getDate() {
+		return DateUtils.toString(date);
 	}
 
 	public void setDate(Date date) {
@@ -81,19 +83,19 @@ public class Article implements Serializable {
 		this.sort = sort;
 	}
 
-	public Set<Tag> getTagSet() {
-		return tagSet;
+	public List<Tag> getTagList() {
+		return tagList;
 	}
 
-	public void setTagSet(Set<Tag> tagSet) {
-		this.tagSet = tagSet;
+	public void setTagList(List<Tag> tagList) {
+		this.tagList = tagList;
 	}
 
-	public Set<Comment> getCommentSet() {
-		return commentSet;
+	public List<Comment> getCommentList() {
+		return commentList;
 	}
 
-	public void setCommentSet(Set<Comment> commentSet) {
-		this.commentSet = commentSet;
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
 	}
 }

@@ -1,8 +1,10 @@
 package style.dx.eros.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Sort implements Serializable {
@@ -14,15 +16,16 @@ public class Sort implements Serializable {
 	private String sortName;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sort")
-	private Set<Article> articleSet;
+	@JsonIgnore
+	private List<Article> articleList;
 
 	public Sort() {
 		super();
 	}
 
-	public Sort(String sortName, Set<Article> articleSet) {
+	public Sort(String sortName, List<Article> articleList) {
 		this.sortName = sortName;
-		this.articleSet = articleSet;
+		this.articleList = articleList;
 	}
 
 	public Long getId() {
@@ -41,11 +44,11 @@ public class Sort implements Serializable {
 		this.sortName = sortName;
 	}
 
-	public Set<Article> getArticleSet() {
-		return articleSet;
+	public List<Article> getArticleList() {
+		return articleList;
 	}
 
-	public void setArticleSet(Set<Article> articleSet) {
-		this.articleSet = articleSet;
+	public void setArticleList(List<Article> articleList) {
+		this.articleList = articleList;
 	}
 }

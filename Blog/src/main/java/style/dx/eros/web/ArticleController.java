@@ -12,13 +12,7 @@ import style.dx.eros.service.ArticleService;
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
-
-	@RequestMapping(value = {"/", "/index"})
-	public String index(Model model) {
-		model.addAttribute("articles", articleService.getArticles());
-		return "index";
-	}
-
+	
 	@RequestMapping(value = "/article/{id}")
 	public String article(@PathVariable Long id, Model model) {
 		model.addAttribute("article", articleService.getArticleById(id));

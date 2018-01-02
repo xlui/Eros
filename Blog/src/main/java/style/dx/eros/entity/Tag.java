@@ -1,8 +1,10 @@
 package style.dx.eros.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Tag implements Serializable {
@@ -16,15 +18,16 @@ public class Tag implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "t_tag_article", joinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name = "article_id", referencedColumnName = "id"))
-	private Set<Article> articleSet;
+	@JsonIgnore
+	private List<Article> articleList;
 
 	public Tag() {
 		super();
 	}
 
-	public Tag(String tagName, Set<Article> articleSet) {
+	public Tag(String tagName, List<Article> articleList) {
 		this.tagName = tagName;
-		this.articleSet = articleSet;
+		this.articleList = articleList;
 	}
 
 	public Long getId() {
@@ -43,12 +46,12 @@ public class Tag implements Serializable {
 		this.tagName = tagName;
 	}
 
-	public Set<Article> getArticleSet() {
-		return articleSet;
+	public List<Article> getArticleList() {
+		return articleList;
 	}
 
-	public void setArticleSet(Set<Article> articleSet) {
-		this.articleSet = articleSet;
+	public void setArticleList(List<Article> articleList) {
+		this.articleList = articleList;
 	}
 }
 

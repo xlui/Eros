@@ -18,11 +18,11 @@
                     &nbsp;&nbsp;
                     <strong><th:block th:text="${sort.getSortName()}"/></strong>
                     &nbsp;&nbsp;
-                    (<th:block th:text="${sort.getArticleSet().size()}"/>)
+                    (<th:block th:text="${sort.getArticleList().size()}"/>)
                     <br/><br/>
 
                     <div class="list-group">
-                        <th:block th:each="article: ${sort.getArticleSet()}">
+                        <th:block th:each="article: ${sort.getArticleList()}">
                             <li class="list-group-item">
                                 <div class="sort-item">
                                     <div>

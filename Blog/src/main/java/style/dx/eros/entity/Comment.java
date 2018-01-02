@@ -1,5 +1,7 @@
 package style.dx.eros.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,6 +15,7 @@ public class Comment implements Serializable {
 	private String content;
 
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Article article;
 
 	@ManyToOne(cascade = CascadeType.ALL)

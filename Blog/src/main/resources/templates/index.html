@@ -8,13 +8,11 @@
 <th:block th:replace="base::masthead('home')"/>
 
 <div class="container">
-    <!--<th:block th:replace="base::header"/>-->
 
     <div class="row">
         <div class="col-sm-8 blog-main">
 
             <th:block th:replace="base::header"/>
-
 
             <th:block th:each="article: ${articles}">
                 <div class="blog-post">
@@ -23,17 +21,46 @@
                             <th:block th:text="${article.getTitle()}"/>
                         </a>
                     </h3>
-                    <p class="blog-post-meta"><th:block th:text="${article.date}"/></p>
+                    <p class="blog-post-meta">
+                        <th:block th:text="${article.date}"/>
+                    </p>
 
                     <span class="content" th:text="${article.getContent()}"></span>
                 </div>
             </th:block>
 
             <nav>
-                <ul class="pager">
-                    <li><a th:href="@{/}">上一篇</a></li>
-                    <li><a th:href="@{/}">下一篇</a></li>
-                </ul>
+                <hr/>
+                <div class="pager">
+                    <!-- number 从 0 开始计算，page 从 0 + 1 开始计算-->
+                    <!-- 所以上一页的 page = number -->
+                    <!-- 下一页的 page = number + 2 -->
+
+                    <th:block th:if="!${articles.first}">
+                        <a th:href="@{/page/{p}(p=${articles.number})}">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                    </th:block>
+                    &nbsp;&nbsp;
+
+                    <th:block th:each="page: ${#numbers.sequence(1, articles.totalPages)}">
+                        <a th:href="@{/page/{p}(p=${page})}">
+                            <span class="page-number" th:text="${page}"
+                                  th:classappend="(${page} == ${articles.number + 1}) ? 'current' : 'dasdadasdsa'">
+                            </span>
+                        </a>
+                        <th:block th:if="!${page == articles.totalPages}">
+                            &nbsp;&nbsp;
+                        </th:block>
+                    </th:block>
+
+                    &nbsp;&nbsp;
+                    <th:block th:if="!${articles.last}">
+                        <a th:href="@{/page/{p}(p=${articles.number} + 2)}">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </th:block>
+                </div>
             </nav>
         </div>
 

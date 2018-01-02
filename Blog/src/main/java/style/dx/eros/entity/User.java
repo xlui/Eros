@@ -1,8 +1,10 @@
 package style.dx.eros.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class User implements Serializable {
@@ -17,16 +19,17 @@ public class User implements Serializable {
 	private String password;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	private Set<Comment> commentSet;
+	@JsonIgnore
+	private List<Comment> commentList;
 
 	public User() {
 		super();
 	}
 
-	public User(String username, String password, Set<Comment> commentSet) {
+	public User(String username, String password, List<Comment> commentList) {
 		this.username = username;
 		this.password = password;
-		this.commentSet = commentSet;
+		this.commentList = commentList;
 	}
 
 	public Long getId() {
@@ -53,11 +56,11 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public Set<Comment> getCommentSet() {
-		return commentSet;
+	public List<Comment> getCommentList() {
+		return commentList;
 	}
 
-	public void setCommentSet(Set<Comment> commentSet) {
-		this.commentSet = commentSet;
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
 	}
 }

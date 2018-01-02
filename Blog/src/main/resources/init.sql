@@ -15,10 +15,10 @@ INSERT INTO tag (id, tag_name) VALUES
 INSERT INTO article (content, date, title, sort_id) VALUES
   ("Hello World!
 
-  `Hello`", now(), "我的博客第一篇", 1);
+  `Hello`", "2017-12-31 12:26", "我的博客第一篇", 1);
 
 INSERT INTO article (content, date, title, sort_id) VALUES
-  ("这是**第二篇**博客", now(), "Second", 2);
+  ("这是**第二篇**博客", "2018-1-1 10:26", "Second", 2);
 
 INSERT INTO article (content, date, title, sort_id) VALUES
   ("This is the third blog.
@@ -29,7 +29,7 @@ INSERT INTO article (content, date, title, sort_id) VALUES
 
 [xlui 的博客](https://xlui.me)
 
-![xlui 的头像](https://xlui.me/images/avatar.jpg)", now(), "第三", 1);
+![xlui 的头像](https://xlui.me/images/avatar.jpg)", "2018-01-02 17:26", "第三", 1);
 
 INSERT INTO t_tag_article (article_id, tag_id) VALUES
   (1, 1),

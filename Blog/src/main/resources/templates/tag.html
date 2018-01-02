@@ -18,11 +18,11 @@
                     &nbsp;&nbsp;
                     <strong><th:block th:text="${tag.getTagName()}"/></strong>
                     &nbsp;&nbsp;
-                    (<th:block th:text="${tag.getArticleSet().size()}"/>)
+                    (<th:block th:text="${tag.getArticleList().size()}"/>)
                     <br/><br/>
 
                     <div class="list-group">
-                        <th:block th:each="article: ${tag.getArticleSet()}">
+                        <th:block th:each="article: ${tag.getArticleList()}">
                             <li class="list-group-item">
                                 <div class="tag-item">
                                     <div>
