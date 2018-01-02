@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/sort")
+@RequestMapping("/sorts")
 public class SortController {
 	@Autowired
 	private SortService sortService;

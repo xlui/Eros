@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/tag")
+@RequestMapping("/tags")
 public class TagController {
 	@Autowired
 	private TagService tagService;

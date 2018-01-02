@@ -19,8 +19,8 @@
         <div class="container">
             <nav class="blog-nav">
                 <a class="blog-nav-item" th:href="@{/}" th:classappend="(${page} == 'home') ? 'active' : ''">博客</a>
-                <a class="blog-nav-item" th:href="@{/sort}" th:classappend="(${page} == 'sort') ? 'active' : ''">分类</a>
-                <a class="blog-nav-item" th:href="@{/tag}" th:classappend="(${page} == 'tag') ? 'active' : ''">标签</a>
+                <a class="blog-nav-item" th:href="@{/sorts}" th:classappend="(${page} == 'sort') ? 'active' : ''">分类</a>
+                <a class="blog-nav-item" th:href="@{/tags}" th:classappend="(${page} == 'tag') ? 'active' : ''">标签</a>
                 <a class="blog-nav-item" th:href="@{/about}" th:classappend="(${page} == 'about') ? 'active' : ''">关于</a>
             </nav>
         </div>

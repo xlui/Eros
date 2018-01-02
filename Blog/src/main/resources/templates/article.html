@@ -22,7 +22,7 @@
                     &nbsp; | &nbsp;
                     <span class="glyphicon glyphicon-folder-close"></span>
                     分类于
-                    <a th:href="@{/sort/{sortName}(sortName=${article.getSort().getSortName()})}">
+                    <a th:href="@{/sorts/{sortName}(sortName=${article.getSort().getSortName()})}">
                         <th:block th:text="${article.getSort().getSortName()}"/>
                     </a>
                 </p>
