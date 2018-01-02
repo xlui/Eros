@@ -154,12 +154,14 @@ h6, .h6 {
 }
 
 .blog-post-title {
+    margin-top: 25px;
     margin-bottom: 5px;
-    font-size: 40px;
+    font-size: 38px;
 }
 
 .blog-post-meta {
     margin-bottom: 20px;
+    font-size: 18px;
     color: #999;
 }
 

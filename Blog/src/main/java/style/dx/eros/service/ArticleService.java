@@ -4,10 +4,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import style.dx.eros.entity.Article;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ArticleService {
 	Page<Article> getArticles(PageRequest pagedRequest);
 
 	Article getArticleById(Long id);
+
+	Article getPreviousArticle(Date date);
+
+	Article getNextArticle(Date date);
 }

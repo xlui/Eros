@@ -8,6 +8,7 @@ import style.dx.eros.entity.Article;
 import style.dx.eros.repository.ArticleRepository;
 import style.dx.eros.service.ArticleService;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,5 +24,15 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public Article getArticleById(Long id) {
 		return articleRepository.findArticleById(id);
+	}
+
+	@Override
+	public Article getPreviousArticle(Date date) {
+		return articleRepository.findFirstByDateBefore(date);
+	}
+
+	@Override
+	public Article getNextArticle(Date date) {
+		return articleRepository.findFirstByDateAfter(date);
 	}
 }
