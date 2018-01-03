@@ -22,6 +22,18 @@
                 <a class="blog-nav-item" th:href="@{/sorts}" th:classappend="(${page} == 'sort') ? 'active' : ''">分类</a>
                 <a class="blog-nav-item" th:href="@{/tags}" th:classappend="(${page} == 'tag') ? 'active' : ''">标签</a>
                 <a class="blog-nav-item" th:href="@{/about}" th:classappend="(${page} == 'about') ? 'active' : ''">关于</a>
+
+                <th:block th:with="user=${session.user}">
+                    <a class="blog-nav-item user" th:if="${user == null}" th:href="@{/login}">登录</a>
+                    <a class="blog-nav-item user" th:if="${user == null}" th:href="@{/register}">注册</a>
+                <th:block th:if="${user != null}" th:with="username=${user.getUsername()}">
+                    <a class="blog-nav-item user" th:href="@{/logout}">登出</a>
+                    <a class="blog-nav-item user"  th:href="@{/user/{username}(username=${username})}">
+                        欢迎，<th:block th:text="${username}"/>
+                    </a>
+                </th:block>
+                </th:block>
+
             </nav>
         </div>
     </div>

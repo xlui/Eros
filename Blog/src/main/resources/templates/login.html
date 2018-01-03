@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="base::head('登录 | Eros')"/>
+    <link rel="stylesheet" th:href="@{~/css/login.css}"/>
+</head>
+<body>
+<br/><br/><br/><br/><br/>
+<div class="container">
+    <form class="form-signin" th:action="@{/login}" th:object="${user}" method="post">
+        <a th:href="@{/}"><h1 align="center" class="form-signin-heading">Eros</h1></a>
+
+        <label for="username" class="sr-only">用户名：</label>
+        <input id="username" class="form-control" type="text" th:field="*{username}" placeholder="username" required="required" autofocus="autofocus"/>
+        <label for="password" class="sr-only">密码：</label>
+        <input id="password" class="form-control" type="password" th:field="*{password}" placeholder="password" required="required"/>
+        <div class="checkbox">
+            <label><input type="checkbox" value="remember-me"/>记住我</label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <a th:href="@{/register}">新用户？点击注册</a>
+        <a th:href="@{/forget}" style="float: right;">忘记密码？</a>
+    </form>
+</div>
+</body>
+</html>

@@ -54,6 +54,10 @@ h6, .h6 {
     text-decoration: none;
 }
 
+.user {
+    float: right;
+}
+
 /* Active state gets a caret at the bottom */
 .blog-nav .active {
     color: #fff;

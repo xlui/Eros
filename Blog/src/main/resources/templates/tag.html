@@ -8,10 +8,10 @@
 <th:block th:replace="base::masthead('tag')"/>
 
 <div class="container">
-    <th:block th:replace="base::header"/>
-
     <div class="row">
         <div class="col-sm-8 blog-main">
+            <th:block th:replace="base::header"/>
+
             <th:block th:each="tag: ${tags}">
                 <div class="blog-post">
                     <span class="glyphicon glyphicon-triangle-bottom"></span>
