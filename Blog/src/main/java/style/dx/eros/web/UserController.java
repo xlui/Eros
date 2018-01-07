@@ -1,7 +1,6 @@
 package style.dx.eros.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,8 +26,9 @@ public class UserController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute User user, Model model) {
-
-		return "redirect:/login";
+		userService.save(user);
+		model.addAttribute("register", true);
+		return "login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -54,6 +54,18 @@ public class UserController {
 	public String logout(HttpServletRequest httpServletRequest) {
 		httpServletRequest.getSession().setAttribute("user", null);
 		return "redirect:/";
+	}
+
+	@RequestMapping(value = "/forget", method = RequestMethod.GET)
+	public String forget() {
+		return "forget";
+	}
+
+	@RequestMapping(value = "/forget", method = RequestMethod.POST)
+	public String forget(Model model) {
+		// todo: change password
+		model.addAttribute("forget", true);
+		return "forget";
 	}
 
 	@RequestMapping("/user/{username}")

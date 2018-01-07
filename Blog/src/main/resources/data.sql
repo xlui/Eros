@@ -1,4 +1,4 @@
-use eros;
+USE eros;
 
 INSERT INTO sort (id, sort_name) VALUES
   (1, "默认分类");

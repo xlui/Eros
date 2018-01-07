@@ -9,7 +9,17 @@
 <div class="container">
     <form class="form-signin" th:action="@{/login}" th:object="${user}" method="post">
         <a th:href="@{/}"><h1 align="center" class="form-signin-heading">Eros</h1></a>
-
+        <br/>
+        <th:block th:if="${register}">
+            <th:block th:replace="base::prompt('注册成功！')"/>
+        </th:block>
+        <!--<th:block th:if="${forget}">-->
+        <!--&lt;!&ndash;<th:block th:replace="base::prompt('成功修改密码！')"/>&ndash;&gt;-->
+        <!--<th:block th:replace="base::prompt('暂不支持修改密码！')"/>-->
+        <!--</th:block>-->
+        <th:block th:if="(!${register}) and (!${forget})">
+            <br/>
+        </th:block>
         <label for="username" class="sr-only">用户名：</label>
         <input id="username" class="form-control" type="text" th:field="*{username}" placeholder="username" required="required" autofocus="autofocus"/>
         <label for="password" class="sr-only">密码：</label>

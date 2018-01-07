@@ -8,7 +8,7 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
         <title th:text="${title}"></title>
         <link rel="stylesheet" th:href="@{~/bootstrap/css/bootstrap.min.css}"/>
-        <link rel="stylesheet" th:href="@{~/bootstrap/css/bootstrap-theme.css}"/>
+        <!--<link rel="stylesheet" th:href="@{~/bootstrap/css/bootstrap-theme.css}"/>-->
         <link rel="stylesheet" th:href="@{~/css/main.css}"/>
     </th:block>
 </head>
@@ -21,17 +21,21 @@
                 <a class="blog-nav-item" th:href="@{/}" th:classappend="(${page} == 'home') ? 'active' : ''">博客</a>
                 <a class="blog-nav-item" th:href="@{/sorts}" th:classappend="(${page} == 'sort') ? 'active' : ''">分类</a>
                 <a class="blog-nav-item" th:href="@{/tags}" th:classappend="(${page} == 'tag') ? 'active' : ''">标签</a>
-                <a class="blog-nav-item" th:href="@{/about}" th:classappend="(${page} == 'about') ? 'active' : ''">关于</a>
+                <a class="blog-nav-item" th:href="@{/about}"
+                   th:classappend="(${page} == 'about') ? 'active' : ''">关于</a>
 
                 <th:block th:with="user=${session.user}">
-                    <a class="blog-nav-item user" th:if="${user == null}" th:href="@{/login}">登录</a>
-                    <a class="blog-nav-item user" th:if="${user == null}" th:href="@{/register}">注册</a>
-                <th:block th:if="${user != null}" th:with="username=${user.getUsername()}">
-                    <a class="blog-nav-item user" th:href="@{/logout}">登出</a>
-                    <a class="blog-nav-item user"  th:href="@{/user/{username}(username=${username})}">
-                        欢迎，<th:block th:text="${username}"/>
-                    </a>
-                </th:block>
+                    <th:block th:if="${user == null}">
+                        <a class="blog-nav-item user" th:href="@{/login}">登录</a>
+                        <a class="blog-nav-item user" th:href="@{/register}">注册</a>
+                    </th:block>
+                    <th:block th:if="${user != null}" th:with="username=${user.getUsername()}">
+                        <a class="blog-nav-item user" th:href="@{/logout}">登出</a>
+                        <a class="blog-nav-item user" th:href="@{/user/{username}(username=${username})}">
+                            欢迎，
+                            <th:block th:text="${username}"/>
+                        </a>
+                    </th:block>
                 </th:block>
 
             </nav>
@@ -89,6 +93,15 @@
         </div>
 
         <th:block th:replace="base::social"/>
+    </div>
+</th:block>
+
+<th:block th:fragment="prompt(prop)">
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>
+            <th:block th:text="${prop}"/>
+        </strong>
     </div>
 </th:block>
 
