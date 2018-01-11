@@ -6,7 +6,7 @@ Spring-Boot based blog Eros.
 
 Develop with Intellij IDEA, spring boot 1.5.8.RELEASE, mariadb 10.1.29.
 
-Use Template Engine `Thymeleaf`, and `Spring Data JPA` for data access operations.
+Use Template Engine `Thymeleaf`, and `Spring Data JPA` for data access operations. And `Bootstrap` for front page.
 
 ## Demand Analysis
 
@@ -26,7 +26,29 @@ Use Template Engine `Thymeleaf`, and `Spring Data JPA` for data access operation
 >
 > login: register, login, change password
 
-3. Global: show welcome to login users
+## Preview
+
+Index:
+
+![Index](Images/index.png)
+
+![Index-1](Images/index-1.png)
+
+Sorts:
+
+![Sort](Images/sort.png)
+
+Tags:
+
+![Tag](Images/tag.png)
+
+Articles:
+
+![Article](Images/article.png)
+
+Login:
+
+![Login](Images/login.png)
 
 ## LICENSE
 

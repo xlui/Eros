@@ -1,10 +1,10 @@
 # Eros
 
-Spring Boot 开发的博客程序 Eros
+基于 Spring Boot 开发的博客程序 Eros
 
 使用 Intellij IDEA 开发，Spring Boot 版本 1.5.8.RELEASE，Mariadb 版本 10.1.29
 
-使用 thymeleaf 做模板引擎，持久层使用 Spring Data JPA，前端使用 Bootstrap。
+使用 thymeleaf 做模板引擎，持久层使用 Spring Data JPA，前端使用 Bootstrap
 
 ## 需求分析
 
@@ -24,7 +24,29 @@ Spring Boot 开发的博客程序 Eros
 >
 > 登录页：用户注册、用户登录、用户修改密码。
 
-3、全局：显示对登录用户的欢迎语
+## 预览
+
+首页：
+
+![Index](Images/index.png)
+
+![Index-1](Images/index-1.png)
+
+分类：
+
+![Sort](Images/sort.png)
+
+标签：
+
+![Tag](Images/tag.png)
+
+文章：
+
+![Article](Images/article.png)
+
+登录：
+
+![Login](Images/login.png)
 
 ## LICENSE
 
