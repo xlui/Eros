@@ -37,8 +37,11 @@ INSERT INTO t_tag_article (article_id, tag_id) VALUES
   (2, 2),
   (3, 1);
 
-INSERT INTO user (id, password, username) VALUES
-  (NULL, "dev", 1);
+INSERT INTO user (id, password, username, md5) VALUES
+  (NULL, "dev", 1, "c4ca4238a0b923820dcc509a6f75849b");
 
-INSERT INTO comment (content, article_id, user_id) VALUES
-  ("第一条评论", 1, 1);
+INSERT INTO `comment` (content, article_id, user_id, `date`) VALUES
+  ("第一条评论", 1, 1, "2018-01-02 17:20");
+
+INSERT INTO `comment` (content, article_id, user_id, `date`) VALUES
+  ("测试评论", 1, 1, now());

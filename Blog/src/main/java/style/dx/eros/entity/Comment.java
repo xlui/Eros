@@ -1,9 +1,11 @@
 package style.dx.eros.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import style.dx.eros.utils.DateUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 public class Comment implements Serializable {
@@ -13,20 +15,23 @@ public class Comment implements Serializable {
 	@GeneratedValue
 	private Long id;
 	private String content;
+	private Date date;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Article article;
 
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private User user;
 
 	public Comment() {
 		super();
 	}
 
-	public Comment(String content, Article article, User user) {
+	public Comment(String content, Date date, Article article, User user) {
 		this.content = content;
+		this.date = date;
 		this.article = article;
 		this.user = user;
 	}
@@ -45,6 +50,14 @@ public class Comment implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getDate() {
+		return DateUtils.toString(date);
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public Article getArticle() {

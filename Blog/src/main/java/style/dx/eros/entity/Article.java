@@ -27,7 +27,7 @@ public class Article implements Serializable {
 	inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
 	private List<Tag> tagList;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "article")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "article")
 	private List<Comment> commentList;
 
 	public Article() {

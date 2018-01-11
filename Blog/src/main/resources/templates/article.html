@@ -25,6 +25,10 @@
                     <a th:href="@{/sorts/{sortName}(sortName=${article.getSort().getSortName()})}">
                         <th:block th:text="${article.getSort().getSortName()}"/>
                     </a>
+                    &nbsp; | &nbsp;
+                    <span class="glyphicon glyphicon-comment"></span>
+                    评论
+                    <span class="badge" th:text="${comments.size()}"></span>
                 </p>
                 <!--<p class="lead blog-description">A blog project based spring boot.</p>-->
             </div>
@@ -54,6 +58,60 @@
                         </span>
                     </div>
                 </div>
+            </div>
+
+            <div class="comment">
+                <th:block th:if="${comments.size()} != 0">
+                    <th:block th:each="comment: ${comments}">
+                        <div class="col-sm-2">
+                            <div class="thumbnail">
+                                <img class="img-thumbnail"
+                                     th:src="@{'https://www.gravatar.com/avatar/' + ${comment.getUser().getMd5()} + '?d=identicon'}"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <strong>
+                                        <th:block th:text="${comment.getUser().getUsername()}"/>
+                                    </strong>
+                                    <span class="text-muted">发表于 <th:block th:text="${comment.getDate()}"/></span>
+                                </div>
+                                <div class="panel-body">
+                                    <th:block th:text="${comment.getContent()}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </th:block>
+
+                <th:block th:with="user=${session.user}">
+                    <th:block th:if="${user == null}">
+                        <div align="center">
+                            <label for="login">登录以添加一条评论：</label>
+                            <button id="login" class="btn btn-lg btn-primary" type="button"
+                                    onclick="{location.href='/loginTo' + location.pathname}">登录
+                            </button>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${user != null}">
+                        <form th:action="@{/article/{id}/comment(id=${article.getId()})}" th:object="${comment_form}"
+                              method="post">
+                            <div class="col-sm-2">
+                                <p>添加一条评论：</p>
+                            </div>
+                            <div class="col-sm-8">
+                                <label for="comment" class="sr-only">评论</label>
+                                <textarea id="comment" class="comment" th:field="*{content}"></textarea>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-primary"
+                                        onclick="checkComment();">提交
+                                </button>
+                            </div>
+                        </form>
+                    </th:block>
+                </th:block>
             </div>
         </div>
 

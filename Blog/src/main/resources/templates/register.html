@@ -5,10 +5,15 @@
     <link rel="stylesheet" th:href="@{~/css/register.css}"/>
 </head>
 <body>
+<br/><br/><br/><br/><br/>
 <div class="container">
     <form id="register" class="form-register" th:action="@{/register}" th:object="${user}" method="post">
         <a th:href="@{/}"><h1 align="center" class="form-register-heading">Eros</h1></a>
-
+        <br/>
+        <th:block th:if="${failed}">
+            <th:block th:replace="base::prompt('用户名已存在！')"/>
+        </th:block>
+        <br/>
         <label for="username">用户名：</label>
         <input id="username" class="form-control" type="text" th:field="*{username}" placeholder="请输入用户名" required="required" autofocus="autofocus"/>
 

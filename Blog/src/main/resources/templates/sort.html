@@ -20,7 +20,7 @@
                         <strong><th:block th:text="${sort.getSortName()}"/></strong>
                     </a>
                     &nbsp;&nbsp;
-                    (<th:block th:text="${sort.getArticleList().size()}"/>)
+                    <span class="badge" th:text="${sort.getArticleList().size()}"></span>
                     <br/><br/>
 
                     <div class="list-group">

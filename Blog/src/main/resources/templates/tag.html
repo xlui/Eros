@@ -20,7 +20,7 @@
                         <strong><th:block th:text="${tag.getTagName()}"/></strong>
                     </a>
                     &nbsp;&nbsp;
-                    (<th:block th:text="${tag.getArticleList().size()}"/>)
+                    <span class="badge" th:text="${tag.getArticleList().size()}"></span>
                     <br/><br/>
 
                     <div class="list-group">
