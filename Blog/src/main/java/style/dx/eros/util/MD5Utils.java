@@ -1,4 +1,4 @@
-package style.dx.eros.utils;
+package style.dx.eros.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,7 +13,7 @@ public class MD5Utils {
 			messageDigest.update(source.getBytes());
 			byte[] md = messageDigest.digest();
 			int i;
-			StringBuffer stringBuffer = new StringBuffer("");
+			StringBuilder stringBuffer = new StringBuilder("");
 			for (byte aMd : md) {
 				i = aMd;
 				if (i < 0) {

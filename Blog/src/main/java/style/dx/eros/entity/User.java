@@ -1,7 +1,7 @@
 package style.dx.eros.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import style.dx.eros.utils.MD5Utils;
+import style.dx.eros.util.MD5Utils;
 
 import javax.persistence.*;
 import java.io.Serializable;

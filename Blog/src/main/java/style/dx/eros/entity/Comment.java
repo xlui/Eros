@@ -1,7 +1,7 @@
 package style.dx.eros.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import style.dx.eros.utils.DateUtils;
+import style.dx.eros.util.DateUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;

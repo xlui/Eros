@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import style.dx.eros.entity.Comment;
 import style.dx.eros.entity.User;
 import style.dx.eros.service.UserService;
-import style.dx.eros.utils.LogUtils;
+import style.dx.eros.util.LogUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,7 +28,7 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute User user, Model model) {
 		if (userService.getUserByUsername(user.getUsername()) == null) {
-			LogUtils.getLogger().info("User:\n" + user.toString());
+			LogUtils.getInstance().info("User:\n" + user.toString());
 			user.setMd5();
 			userService.save(user);
 			model.addAttribute("register", true);
@@ -50,7 +50,7 @@ public class UserController {
 		User checkUser = userService.getUserByUsername(user.getUsername());
 		if (checkUser != null && checkUser.getPassword().equals(user.getPassword())) {
 			httpServletRequest.getSession().setAttribute("user", checkUser);
-			LogUtils.getLogger().info("UserController: 设置 session.user 为登录用户");
+			LogUtils.getInstance().info("UserController: 设置 session.user 为登录用户");
 			return "redirect:/";
 		} else {
 			model.addAttribute("msg", "username or password invalid!");

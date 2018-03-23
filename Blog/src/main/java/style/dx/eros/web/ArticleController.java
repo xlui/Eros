@@ -13,8 +13,8 @@ import style.dx.eros.entity.User;
 import style.dx.eros.service.ArticleService;
 import style.dx.eros.service.CommentService;
 import style.dx.eros.service.UserService;
-import style.dx.eros.utils.DateUtils;
-import style.dx.eros.utils.LogUtils;
+import style.dx.eros.util.DateUtils;
+import style.dx.eros.util.LogUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
@@ -55,9 +55,9 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = "/{id}/comment", method = RequestMethod.POST)
-	public String addComment(@PathVariable Long id, @ModelAttribute Comment comment, Model model, HttpServletRequest request) {
+	public String addComment(@PathVariable Long id, @ModelAttribute Comment comment, HttpServletRequest request) {
 		if (comment.getContent().trim().length() == 0) {
-			LogUtils.getLogger().info("评论为空，不保存！");
+			LogUtils.getInstance().info("评论为空，不保存！");
 		} else {
 			User user = (User) request.getSession().getAttribute("user");
 			comment.setId(null);

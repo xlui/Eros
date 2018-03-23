@@ -1,9 +1,11 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="base::head(${user.getUsername()} + ' | Eros')"/>
+    <th:block th:include="base::head(title=${user.getUsername()} + ' | Eros')"/>
 </head>
 <body>
-Hello <th:block th:text="${user.getUsername()}"/>!
+<div style="text-align: center;padding-top: 50px;font-size: 32px">
+    Hello <th:block th:text="${user.username}"/>!
+</div>
 </body>
 </html>

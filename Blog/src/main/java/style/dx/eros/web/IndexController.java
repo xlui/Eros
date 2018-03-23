@@ -6,24 +6,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import style.dx.eros.config.Const;
 import style.dx.eros.service.ArticleService;
 
 @Controller
-@RequestMapping(value = {"/", "/index"})
 public class IndexController {
 	@Autowired
 	private ArticleService articleService;
-	private int defaultPageSize = 2;
 
-	@RequestMapping
+	@RequestMapping(value = {"/", "/index"})
 	public String index(Model model) {
-		model.addAttribute("articles", articleService.getArticles(new PageRequest(0, defaultPageSize)));
+		model.addAttribute("articles", articleService.getArticles(new PageRequest(0, Const.defaultPageSize)));
 		return "index";
 	}
 
 	@RequestMapping(value = "/page/{p}")
 	public String index(@PathVariable int p, Model model) {
-		model.addAttribute("articles", articleService.getArticles(new PageRequest(p - 1, defaultPageSize)));
+		model.addAttribute("articles", articleService.getArticles(new PageRequest(p - 1, Const.defaultPageSize)));
 		return "index";
 	}
 }

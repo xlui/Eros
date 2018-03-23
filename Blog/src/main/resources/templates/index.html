@@ -1,7 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="base::head(Eros)"/>
+    <th:block th:include="base::head(title=Eros)"/>
 </head>
 <body>
 
@@ -11,55 +11,60 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-
-            <th:block th:replace="base::header"/>
-
             <th:block th:each="article: ${articles}">
                 <div class="blog-post">
-                    <h3 class="blog-post-title">
-                        <a th:href="@{'/article/' + ${article.getId()}}">
-                            <th:block th:text="${article.getTitle()}"/>
+                    <h2 class="blog-post-title">
+                        <a th:href="@{'/article/' + ${article.id}}">
+                            <th:block th:text="${article.title}"/>
                         </a>
-                    </h3>
+                    </h2>
                     <p class="blog-post-meta">
+                        <i class="fa fa-fw fa-calendar"></i>&nbsp;发表于&nbsp;
                         <th:block th:text="${article.date}"/>
+                        |
+                        <i class="fa fa-fw fa-folder"></i>&nbsp;分类于&nbsp;
+                        <a th:href="@{~/sorts/{sortName}(sortName=${article.sort.sortName})}" th:text="${article.sort.sortName}"></a>
                     </p>
 
-                    <span class="content" th:text="${article.getContent()}"></span>
+                    <span class="content" th:text="${article.content}"></span>
                 </div>
             </th:block>
 
             <nav>
-                <hr/>
                 <div class="pager">
+                    <hr/>
                     <!-- number 从 0 开始计算，page 从 0 + 1 开始计算-->
                     <!-- 所以上一页的 page = number -->
                     <!-- 下一页的 page = number + 2 -->
-
-                    <th:block th:if="!${articles.first}">
-                        <a th:href="@{/page/{p}(p=${articles.number})}">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                    </th:block>
-                    &nbsp;&nbsp;
-
-                    <th:block th:each="page: ${#numbers.sequence(1, articles.totalPages)}">
-                        <a th:href="@{/page/{p}(p=${page})}">
-                            <span class="page-number" th:text="${page}"
-                                  th:classappend="(${page} == ${articles.number + 1}) ? 'current' : 'dasdadasdsa'">
-                            </span>
-                        </a>
-                        <th:block th:if="!${page == articles.totalPages}">
-                            &nbsp;&nbsp;
+                    <ul>
+                        <th:block th:if="!${articles.first}">
+                            <a th:href="@{/page/{p}(p=${articles.number})}">
+                                <span class="fa fa-fw fa-chevron-left"></span>
+                            </a>
                         </th:block>
-                    </th:block>
+                        &nbsp;&nbsp;
 
-                    &nbsp;&nbsp;
-                    <th:block th:if="!${articles.last}">
-                        <a th:href="@{/page/{p}(p=${articles.number} + 2)}">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </th:block>
+                        <li th:each="page: ${#numbers.sequence(1, articles.totalPages)}">
+                            <th:block th:switch="${page}">
+                                <th:block th:case="${articles.number + 1}">
+                                    <span class="page-number current" th:text="${page}"></span>
+                                </th:block>
+                                <th:block th:case="*">
+                                    <a th:href="@{/page/{p}(p=${page})}" class="page-number" th:text="${page}"></a>
+                                </th:block>
+                            </th:block>
+                            <th:block th:if="!${page == articles.totalPages}">
+                                &nbsp;&nbsp;
+                            </th:block>
+                        </li>
+
+                        &nbsp;&nbsp;
+                        <th:block th:if="!${articles.last}">
+                            <a th:href="@{/page/{p}(p=${articles.number} + 2)}">
+                                <span class="fa fa-fw fa-chevron-right"></span>
+                            </a>
+                        </th:block>
+                    </ul>
                 </div>
             </nav>
         </div>

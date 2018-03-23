@@ -1,7 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="base::head('登录 | Eros')"/>
+    <th:block th:include="base::head(title='登录 | Eros')"/>
     <link rel="stylesheet" th:href="@{~/css/login.css}"/>
 </head>
 <body>
@@ -17,10 +17,6 @@
         <th:block th:if="${msg}">
             <th:block th:replace="base::prompt(${msg})"/>
         </th:block>
-        <!--<th:block th:if="${forget}">-->
-        <!--&lt;!&ndash;<th:block th:replace="base::prompt('成功修改密码！')"/>&ndash;&gt;-->
-        <!--<th:block th:replace="base::prompt('暂不支持修改密码！')"/>-->
-        <!--</th:block>-->
         <th:block th:if="(!${register}) and (!${forget})">
             <br/>
         </th:block>

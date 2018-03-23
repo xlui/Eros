@@ -7,8 +7,8 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
         <title th:text="${title}"></title>
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" th:href="@{~/bootstrap/css/bootstrap.min.css}"/>
-        <!--<link rel="stylesheet" th:href="@{~/bootstrap/css/bootstrap-theme.css}"/>-->
         <link rel="stylesheet" th:href="@{~/css/main.css}"/>
     </th:block>
 </head>
@@ -18,9 +18,10 @@
     <div class="blog-masthead">
         <div class="container">
             <nav class="blog-nav">
-                <a class="blog-nav-item" th:href="@{/}" th:classappend="(${page} == 'home') ? 'active' : ''">博客</a>
-                <a class="blog-nav-item" th:href="@{/sorts}" th:classappend="(${page} == 'sort') ? 'active' : ''">分类</a>
-                <a class="blog-nav-item" th:href="@{/tags}" th:classappend="(${page} == 'tag') ? 'active' : ''">标签</a>
+                <a class="blog-nav-item" th:href="@{/}"><img th:src="@{~/img/favicon.ico}" alt="Eros" height="30" width="72" title="A blog project based Spring Boot."/></a>
+                <a class="blog-nav-item" th:href="@{/}" th:classappend="(${page} == 'home') ? 'active' : ''" title="博客">博客</a>
+                <a class="blog-nav-item" th:href="@{/sorts}" th:classappend="(${page} == 'sort') ? 'active' : ''" title="分类">分类</a>
+                <a class="blog-nav-item" th:href="@{/tags}" th:classappend="(${page} == 'tag') ? 'active' : ''" title="标签">标签</a>
                 <a class="blog-nav-item" th:href="@{/about}"
                    th:classappend="(${page} == 'about') ? 'active' : ''">关于</a>
 
@@ -37,16 +38,8 @@
                         </a>
                     </th:block>
                 </th:block>
-
             </nav>
         </div>
-    </div>
-</th:block>
-
-<th:block th:fragment="header">
-    <div class="blog-header">
-        <h1 class="blog-title">Eros</h1>
-        <p class="lead blog-description">A blog project based spring boot.</p>
     </div>
 </th:block>
 
@@ -61,9 +54,9 @@
 
 <th:block th:fragment="social">
     <div class="sidebar-module">
-        <h4>社交链接</h4>
+        <h4><i class="fa fa-fw fa-link"></i>&nbsp;社交链接</h4>
         <ol class="list-unstyled">
-            <li><a href="https://github.com/xlui">GitHub</a></li>
+            <li><a href="https://github.com/xlui"><i class="fa fa-fw fa-github"></i>GitHub</a></li>
             <li><a href="https://xlui.me">xlui 的博客</a></li>
             <!--<li><a href="#"></a></li>-->
         </ol>
@@ -75,7 +68,7 @@
         <th:block th:replace="base::info"/>
 
         <div class="sidebar-module">
-            <h4>Archives</h4>
+            <h4><i class="fa fa-fw fa-th"></i>&nbsp;Archives</h4>
             <ol class="list-unstyled">
                 <li><a href="#">March 2014</a></li>
                 <li><a href="#">February 2014</a></li>
@@ -109,7 +102,7 @@
     <footer class="blog-footer">
         <p>Build by <a href="https://github.com/spring-projects/spring-boot">Spring Boot</a>
             and <a href="https://github.com/twbs/bootstrap">Bootstrap</a>.
-            Fork me on <a href="https://github.com/xlui/Eros">GitHub</a>!</p>
+            Fork me on <a href="https://github.com/xlui/Eros"><i class="fa fa-fw fa-github"></i>GitHub</a>!</p>
         <p><a href="#">Back to top</a></p>
     </footer>
 

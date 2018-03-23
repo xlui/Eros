@@ -1,4 +1,4 @@
-package style.dx.eros.utils;
+package style.dx.eros.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;

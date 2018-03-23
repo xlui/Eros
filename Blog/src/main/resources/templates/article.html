@@ -1,7 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="base::head(${article.getTitle()} + ' | Eros')"/>
+    <th:block th:include="base::head(title=${article.getTitle()} + ' | Eros')"/>
     <link rel="stylesheet" th:href="@{~/css/article.css}"/>
 </head>
 <body>
@@ -11,22 +11,23 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-            <div class="blog-header">
+            <div class="blog-post">
                 <h2 class="blog-post-title">
                     <th:block th:text="${article.title}"/>
+                    <br/>
                 </h2>
                 <p class="blog-post-meta">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                    <i class="fa fa-fw fa-calendar"></i>
                     发表于
                     <th:block th:text="${article.getDate()}"/>
                     &nbsp; | &nbsp;
-                    <span class="glyphicon glyphicon-folder-close"></span>
+                    <i class="fa fa-fw fa-folder"></i>
                     分类于
                     <a th:href="@{/sorts/{sortName}(sortName=${article.getSort().getSortName()})}">
                         <th:block th:text="${article.getSort().getSortName()}"/>
                     </a>
                     &nbsp; | &nbsp;
-                    <span class="glyphicon glyphicon-comment"></span>
+                    <i class="fa fa-fw fa-comment"></i>
                     评论
                     <span class="badge" th:text="${comments.size()}"></span>
                 </p>
@@ -36,13 +37,13 @@
             <span id="content" th:text="${article.getContent()}"></span>
 
             <div>
-                <hr/>
                 <div class="pager">
+                    <hr/>
                     <div>
                         <span class="previous">
                             <th:block th:if="${previous != null}">
                                 <a th:href="@{/article/{id}(id=${previous.getId()})}">
-                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                   <i class="fa fa-fw fa-chevron-left"></i>
                                     上一篇：<th:block th:text="${previous.getTitle()}"/>
                                 </a>
                             </th:block>
@@ -51,7 +52,7 @@
                         <span class="next">
                             <th:block th:if="${next != null}">
                                 <a th:href="@{/article/{id}(id=${next.getId()})}">
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <i class="fa fa-fw fa-chevron-right"></i>
                                     下一篇：<th:block th:text="${next.title}"/>
                                 </a>
                             </th:block>
@@ -61,6 +62,7 @@
             </div>
 
             <div class="comment">
+                <!-- 渲染评论 -->
                 <th:block th:if="${comments.size()} != 0">
                     <th:block th:each="comment: ${comments}">
                         <div class="col-sm-2">
@@ -85,6 +87,7 @@
                     </th:block>
                 </th:block>
 
+                <!-- 对未登录用户显示 -->
                 <th:block th:with="user=${session.user}">
                     <th:block th:if="${user == null}">
                         <div align="center">
@@ -95,7 +98,8 @@
                         </div>
                     </th:block>
                     <th:block th:if="${user != null}">
-                        <form th:action="@{/article/{id}/comment(id=${article.getId()})}" th:object="${comment_form}"
+                        <form th:action="@{/article/{id}/comment(id=${article.getId()})}"
+                              th:object="${comment_form}"
                               method="post">
                             <div class="col-sm-2">
                                 <p>添加一条评论：</p>

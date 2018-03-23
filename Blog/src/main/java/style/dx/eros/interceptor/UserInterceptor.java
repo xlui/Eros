@@ -3,7 +3,7 @@ package style.dx.eros.interceptor;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import style.dx.eros.entity.User;
-import style.dx.eros.utils.LogUtils;
+import style.dx.eros.util.LogUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +15,7 @@ public class UserInterceptor implements HandlerInterceptor {
 		HttpSession session = httpServletRequest.getSession();
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
-			LogUtils.getLogger().info("拦截器：" + "检查 session.user 为 null");
+			LogUtils.getInstance().info("拦截器：" + "检查 session.user 为 null");
 		}
 		return true;
 	}

@@ -1,7 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="base::head('分类 | Eros')"/>
+    <th:block th:include="base::head(title='分类 | Eros')"/>
     <link rel="stylesheet" th:href="@{css/sort.css}"/>
 </head>
 <body>
@@ -9,46 +9,37 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-8 blog-main">
-            <th:block th:replace="base::header"/>
-
+        <div class="col-sm-8 blog-main content">
             <th:block th:each="sort: ${sorts}">
                 <div class="blog-post">
-                    <span class="glyphicon glyphicon-triangle-bottom"></span>
-                    &nbsp;&nbsp;
-                    <a th:href="@{/sorts/{sortName}(sortName=${sort.getSortName()})}">
-                        <strong><th:block th:text="${sort.getSortName()}"/></strong>
+                    <i class="fa fa-fw fa-chevron-down"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/sorts/{sortName}(sortName=${sort.sortName})}">
+                        <strong>
+                            <th:block th:text="${sort.sortName}"/>
+                        </strong>
                     </a>
                     &nbsp;&nbsp;
-                    <span class="badge" th:text="${sort.getArticleList().size()}"></span>
+                    <span class="badge" th:text="${sort.articleList.size()}"></span>
                     <br/><br/>
 
                     <div class="list-group">
-                        <th:block th:each="article: ${sort.getArticleList()}">
-                            <li class="list-group-item">
-                                <div class="sort-item">
-                                    <div>
-                                        <a th:href="@{/article/{id}(id=${article.getId()})}">
-                                            <th:block th:text="${article.getTitle()}"/>
-                                        </a>
-                                    </div>
-                                    <div class="article-time">
-                                        <img th:src="@{~/img/time.png}" alt=""/>
-                                        <th:block th:text="${article.getDate()}"/>
-                                    </div>
+                        <th:block th:each="article: ${sort.articleList}">
+                            <li class="list-group-item sort-item">
+                                <div>
+                                    <a th:href="@{/article/{id}(id=${article.id})}" th:title="${article.title}">
+                                        <th:block th:text="${article.title}"/>
+                                    </a>
+                                </div>
+                                <div class="article-time">
+                                    <img th:src="@{~/img/time.png}" alt="date" title="Date"/>
+                                    <th:block th:text="${article.date}"/>
                                 </div>
                             </li>
                         </th:block>
                     </div>
                 </div>
             </th:block>
-
-            <!--<nav>-->
-                <!--<ul class="pager">-->
-                    <!--<li><a th:href="@{/}">上一篇</a></li>-->
-                    <!--<li><a th:href="@{/}">下一篇</a></li>-->
-                <!--</ul>-->
-            <!--</nav>-->
         </div>
 
         <th:block th:replace="base::side"/>
