@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="masthead(page)">
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="blog-nav">
+                <a class="blog-nav-item" th:href="@{/}">
+                    <img th:src="@{~/img/favicon.ico}" src="/static/img/favicon.ico" alt="Eros" height="30" width="72"
+                         title="A blog project based Spring Boot."/></a>
+                <a class="blog-nav-item" th:href="@{/}" th:classappend="(${page} == 'home') ? 'active' : ''" title="博客">博客</a>
+                <a class="blog-nav-item" th:href="@{/sorts}" th:classappend="(${page} == 'sort') ? 'active' : ''"
+                   title="分类">分类</a>
+                <a class="blog-nav-item" th:href="@{/tags}" th:classappend="(${page} == 'tag') ? 'active' : ''"
+                   title="标签">标签</a>
+                <a class="blog-nav-item" th:href="@{/about}"
+                   th:classappend="(${page} == 'about') ? 'active' : ''">关于</a>
+
+                <th:block th:with="user=${session.user}">
+                    <th:block th:if="${user == null}">
+                        <a class="blog-nav-item user" th:href="@{/login}">登录</a>
+                        <a class="blog-nav-item user" th:href="@{/register}">注册</a>
+                    </th:block>
+                    <th:block th:if="${user != null}" th:with="username=${user.username}">
+                        <a class="blog-nav-item user" th:href="@{/logout}">登出</a>
+                        <a class="blog-nav-item user" th:href="@{/user/{name}(name=${username})}">
+                            欢迎，
+                            <th:block th:text="${username}"/>
+                        </a>
+                    </th:block>
+                </th:block>
+            </nav>
+        </div>
+    </div>
+</th:block>
+</html>

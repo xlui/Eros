@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="base::head(title='分类 | Eros')"/>
+    <link rel="stylesheet" th:href="@{css/sort.css}"/>
+</head>
+<body>
+<th:block th:replace="base::masthead('sort')"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 blog-main content">
+            <th:block th:each="sort: ${sorts}">
+                <div class="blog-post">
+                    <i class="fa fa-fw fa-chevron-down"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/sorts/{sortName}(sortName=${sort.sortName})}">
+                        <strong>
+                            <th:block th:text="${sort.sortName}"/>
+                        </strong>
+                    </a>
+                    &nbsp;&nbsp;
+                    <span class="badge" th:text="${sort.articleList.size()}"></span>
+                    <br/><br/>
+
+                    <div class="list-group">
+                        <th:block th:each="article: ${sort.articleList}">
+                            <li class="list-group-item sort-item">
+                                <div>
+                                    <a th:href="@{/article/{id}(id=${article.id})}" th:title="${article.title}">
+                                        <th:block th:text="${article.title}"/>
+                                    </a>
+                                </div>
+                                <div class="article-time">
+                                    <img th:src="@{~/img/time.png}" alt="date" title="Date"/>
+                                    <th:block th:text="${article.date}"/>
+                                </div>
+                            </li>
+                        </th:block>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+
+        <th:block th:replace="base::side"/>
+    </div>
+</div>
+
+<th:block th:replace="base::footer"/>
+</body>
+</html>

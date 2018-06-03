@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="base::head(title='标签 | Eros')"/>
+    <link rel="stylesheet" th:href="@{~/css/tag.css}"/>
+</head>
+<body>
+<th:block th:replace="base::masthead('tag')"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 blog-main content">
+            <th:block th:each="tag: ${tags}">
+                <div class="blog-post">
+                    <span class="fa fa-fw fa-chevron-down"></span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/tags/{tagName}(tagName=${tag.tagName})}" th:title="${tag.tagName}">
+                        <strong><th:block th:text="${tag.getTagName()}"/></strong>
+                    </a>
+                    &nbsp;&nbsp;
+                    <span class="badge" th:text="${tag.articleList.size()}"></span>
+                    <br/><br/>
+
+                    <div class="list-group">
+                        <th:block th:each="article: ${tag.articleList}">
+                            <li class="list-group-item">
+                                <div class="tag-item">
+                                    <div>
+                                        <a th:href="@{/article/{id}(id=${article.id})}">
+                                            <th:block th:text="${article.title}"/>
+                                        </a>
+                                    </div>
+                                    <div class="article-time">
+                                        <img th:src="@{~/img/time.png}" alt="date"/>
+                                        <th:block th:text="${article.date}"/>
+                                    </div>
+                                </div>
+                            </li>
+                        </th:block>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+
+        <th:block th:replace="base::side"/>
+    </div>
+</div>
+
+<th:block th:replace="base::footer"/>
+</body>
+</html>

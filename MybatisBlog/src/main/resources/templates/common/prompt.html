@@ -1,0 +1,10 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="prompt(prop)">
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>
+            <th:block th:text="${prop}"/>
+        </strong>
+    </div>
+</th:block>
+</html>

@@ -33,7 +33,7 @@ CREATE TABLE `article` (
   id          INT      AUTO_INCREMENT PRIMARY KEY,
   title       CHAR(32) NOT NULL,
   content     TEXT,
-  create_data DATETIME DEFAULT now(),
+  create_date DATETIME DEFAULT now(),
   update_date DATETIME DEFAULT now(),
   sort_id     INT      NOT NULL,
   KEY `title` (`title`),
@@ -56,8 +56,9 @@ CREATE TABLE `user` (
   DEFAULT CHARSET = utf8;
 
 CREATE TABLE `comment` (
-  id         INT AUTO_INCREMENT PRIMARY KEY,
+  id         INT      AUTO_INCREMENT PRIMARY KEY,
   content    CHAR(128) NOT NULL,
+  date       DATETIME DEFAULT NOW(),
   article_id INT       NOT NULL,
   user_id    INT       NOT NULL,
   KEY `content` (`content`),
@@ -80,3 +81,40 @@ CREATE TABLE `st_article_tag` (
   AUTO_INCREMENT = 27
   DEFAULT CHARSET = utf8;
 
+# init database
+
+INSERT INTO `user` (id, username, password) VALUES
+  (1, 1, 'dev');
+
+INSERT INTO `sort` (id, name) VALUES
+  (1, '默认分类'),
+  (2, '随笔');
+
+INSERT INTO `tag` (id, name) VALUES
+  (1, '默认标签'),
+  (2, 'markdown');
+
+INSERT INTO `article` (id, title, content, create_date, sort_id) VALUES
+  (1, '我的博客第一篇', 'Hello World!
+
+  `Hello`', '2017-12-31 12:26', 1),
+  (2, 'Second', '这是**第二篇**博客', '2018-1-1 10:26', 2),
+  (3, '第三篇', 'This is the third blog.
+
+测试 markdown！
+
+`Hello World`
+
+[xlui 的博客](https://xlui.me)
+
+![xlui 的头像](https://xlui.me/images/avatar.jpg)', NOW(), 1);
+
+INSERT INTO `comment` (content, date, article_id, user_id) VALUES
+  ('第一条评论', '2018-01-02 17:20', 1, 1),
+  ('测试评论', NOW(), 1, 1);
+
+INSERT INTO `st_article_tag` (article_id, tar_id) VALUES
+  (1, 1),
+  (1, 2),
+  (2, 2),
+  (3, 1);

@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class Tag implements Serializable {
     public static final long serialVersionID = 1L;
-    private Long id;
+    private Integer id;
     private String name;
 
     public Tag() {
     }
 
-    public Tag(Long id, String name) {
+    public Tag(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -20,11 +20,11 @@ public class Tag implements Serializable {
         return "Tag[id=" + id + ", name=" + name + "]";
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
