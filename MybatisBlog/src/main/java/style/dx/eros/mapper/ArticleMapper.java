@@ -23,4 +23,16 @@ public interface ArticleMapper {
 
     @Select("SELECT * FROM article WHERE id=#{id}")
     Article findById(Integer id);
+
+	@Select("SELECT * FROM article WHERE sort_id=#{id}")
+	List<Article> findBySortId(Integer id);
+
+	@Select("SELECT * FROM article WHERE id in (SELECT article_id FROM st_article_tag WHERE tag_id = #{id})")
+	List<Article> findByTagId(Integer id);
+
+	@Select("SELECT * FROM article WHERE create_date < #{date} ORDER BY create_date DESC LIMIT 1")
+	Article findDateBefore(Date date);
+
+	@Select("SELECT * FROM article WHERE create_date > #{date} LIMIT 1")
+	Article findDateAfter(Date date);
 }

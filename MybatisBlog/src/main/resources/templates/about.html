@@ -1,18 +1,19 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="base::head(title='关于 | Eros')"/>
+    <th:block th:include="common/head::head(title='关于 | Eros')"/>
     <link rel="stylesheet" th:href="@{~/css/about.css}"/>
 </head>
 <body>
-<th:block th:replace="base::masthead('about')"/>
+<th:block th:replace="common/masthead::masthead('about')"/>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-8 blog-main">
             <div class="content">
                 <p>
-                    Eros 是基于 Spring Boot 和 Bootstrap 的博客程序，数据库选用 MariaDB，Web 容器使用 Tomcat，部署在 CentOS7 上。
+                    Eros 是基于 Spring Boot 和 Bootstrap 的博客程序，数据库选用 MariaDB，Web 容器使用 Tomcat，Web Server 使用 Nginx，部署在 CentOS7
+                    上。
                 </p>
                 <br/>
                 <p class="link">
@@ -25,10 +26,10 @@
             </div>
         </div>
 
-        <th:block th:replace="base::side"/>
+        <th:block th:replace="common/side::side"/>
     </div>
 </div>
 
-<th:block th:replace="base::footer"/>
+<th:block th:replace="common/footer::footer"/>
 </body>
 </html>

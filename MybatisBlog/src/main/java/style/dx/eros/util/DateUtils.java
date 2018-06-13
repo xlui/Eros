@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateUtils {
-    private static final DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	private static final DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 将 Date 对象转换为格式化的 String

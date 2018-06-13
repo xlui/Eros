@@ -7,9 +7,9 @@
                     <img th:src="@{~/img/favicon.ico}" src="/static/img/favicon.ico" alt="Eros" height="30" width="72"
                          title="A blog project based Spring Boot."/></a>
                 <a class="blog-nav-item" th:href="@{/}" th:classappend="(${page} == 'home') ? 'active' : ''" title="博客">博客</a>
-                <a class="blog-nav-item" th:href="@{/sorts}" th:classappend="(${page} == 'sort') ? 'active' : ''"
+                <a class="blog-nav-item" th:href="@{/sort}" th:classappend="(${page} == 'sort') ? 'active' : ''"
                    title="分类">分类</a>
-                <a class="blog-nav-item" th:href="@{/tags}" th:classappend="(${page} == 'tag') ? 'active' : ''"
+                <a class="blog-nav-item" th:href="@{/tag}" th:classappend="(${page} == 'tag') ? 'active' : ''"
                    title="标签">标签</a>
                 <a class="blog-nav-item" th:href="@{/about}"
                    th:classappend="(${page} == 'about') ? 'active' : ''">关于</a>

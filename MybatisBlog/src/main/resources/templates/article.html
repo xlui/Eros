@@ -1,11 +1,11 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="base::head(title=${article.getTitle()} + ' | Eros')"/>
+    <th:block th:include="common/head::head(title=${article.title} + ' | Eros')"/>
     <link rel="stylesheet" th:href="@{~/css/article.css}"/>
 </head>
 <body>
-<th:block th:replace="base::masthead(null)"/>
+<th:block th:replace="common/masthead::masthead(null)"/>
 
 <div class="container">
 
@@ -19,22 +19,21 @@
                 <p class="blog-post-meta">
                     <i class="fa fa-fw fa-calendar"></i>
                     发表于
-                    <th:block th:text="${article.getDate()}"/>
+                    <th:block th:text="${article.create_date}"/>
                     &nbsp; | &nbsp;
                     <i class="fa fa-fw fa-folder"></i>
                     分类于
-                    <a th:href="@{/sorts/{sortName}(sortName=${article.getSort().getSortName()})}">
-                        <th:block th:text="${article.getSort().getSortName()}"/>
+                    <a th:href="@{/sort/{name}(name=${sort.name})}">
+                        <th:block th:text="${sort.name}"/>
                     </a>
                     &nbsp; | &nbsp;
                     <i class="fa fa-fw fa-comment"></i>
                     评论
-                    <span class="badge" th:text="${comments.size()}"></span>
+                    <span class="badge" th:text="${#lists.size(comments)}"></span>
                 </p>
-                <!--<p class="lead blog-description">A blog project based spring boot.</p>-->
             </div>
 
-            <span id="content" th:text="${article.getContent()}"></span>
+            <span id="content" th:text="${article.content}"></span>
 
             <div>
                 <div class="pager">
@@ -42,16 +41,16 @@
                     <div>
                         <span class="previous">
                             <th:block th:if="${previous != null}">
-                                <a th:href="@{/article/{id}(id=${previous.getId()})}">
+                                <a th:href="@{/article/{id}(id=${previous.id})}">
                                    <i class="fa fa-fw fa-chevron-left"></i>
-                                    上一篇：<th:block th:text="${previous.getTitle()}"/>
+                                    上一篇：<th:block th:text="${previous.title}"/>
                                 </a>
                             </th:block>
                         </span>
 
                         <span class="next">
                             <th:block th:if="${next != null}">
-                                <a th:href="@{/article/{id}(id=${next.getId()})}">
+                                <a th:href="@{/article/{id}(id=${next.id})}">
                                     <i class="fa fa-fw fa-chevron-right"></i>
                                     下一篇：<th:block th:text="${next.title}"/>
                                 </a>
@@ -67,20 +66,20 @@
                     <th:block th:each="comment: ${comments}">
                         <div class="col-sm-2">
                             <div class="thumbnail">
-                                <img class="img-thumbnail"
-                                     th:src="@{'https://www.gravatar.com/avatar/' + ${comment.getUser().getMd5()} + '?d=identicon'}"/>
+                                <img class="img-thumbnail" src="https://www.gravatar.com/avatar/"
+                                     th:src="@{'https://www.gravatar.com/avatar/' + ${comment.user_id} + '?d=identicon'}"/>
                             </div>
                         </div>
                         <div class="col-sm-10">
                             <div class="panel panel-success">
                                 <div class="panel-heading">
                                     <strong>
-                                        <th:block th:text="${comment.getUser().getUsername()}"/>
+                                        <th:block th:text="${comment.user.username}"/>
                                     </strong>
-                                    <span class="text-muted">发表于 <th:block th:text="${comment.getDate()}"/></span>
+                                    <span class="text-muted">发表于 <th:block th:text="${comment.date}"/></span>
                                 </div>
                                 <div class="panel-body">
-                                    <th:block th:text="${comment.getContent()}"/>
+                                    <th:block th:text="${comment.content}"/>
                                 </div>
                             </div>
                         </div>
@@ -119,11 +118,11 @@
             </div>
         </div>
 
-        <th:block th:replace="base::side"/>
+        <th:block th:replace="common/side::side"/>
     </div>
 </div>
 
-<th:block th:replace="base::footer"/>
+<th:block th:replace="common/footer::footer"/>
 
 <script th:src="@{~/js/marked.min.js}"></script>
 <script th:src="@{~/js/article.js}"></script>

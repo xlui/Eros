@@ -73,9 +73,9 @@ CREATE TABLE `comment` (
 
 CREATE TABLE `st_article_tag` (
   article_id INT NOT NULL,
-  tar_id     INT NOT NULL,
+  tag_id     INT NOT NULL,
   CONSTRAINT `fk_st_article_tag_article` FOREIGN KEY (`article_id`) REFERENCES article (`id`),
-  CONSTRAINT `fk_st_article_tag_tag` FOREIGN KEY (`tar_id`) REFERENCES tag (`id`)
+  CONSTRAINT `fk_st_article_tag_tag` FOREIGN KEY (`tag_id`) REFERENCES tag (`id`)
 )
   ENGINE = INNODB
   AUTO_INCREMENT = 27
@@ -84,7 +84,8 @@ CREATE TABLE `st_article_tag` (
 # init database
 
 INSERT INTO `user` (id, username, password) VALUES
-  (1, 1, 'dev');
+  (1, 1, 'dev'),
+  (2, 2, 'std');
 
 INSERT INTO `sort` (id, name) VALUES
   (1, '默认分类'),
@@ -111,9 +112,10 @@ INSERT INTO `article` (id, title, content, create_date, sort_id) VALUES
 
 INSERT INTO `comment` (content, date, article_id, user_id) VALUES
   ('第一条评论', '2018-01-02 17:20', 1, 1),
-  ('测试评论', NOW(), 1, 1);
+  ('测试评论', NOW(), 1, 1),
+  ('你好啊', '2019-01-01 00:00', 1, 2);
 
-INSERT INTO `st_article_tag` (article_id, tar_id) VALUES
+INSERT INTO `st_article_tag` (article_id, tag_id) VALUES
   (1, 1),
   (1, 2),
   (2, 2),

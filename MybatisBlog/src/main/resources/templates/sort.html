@@ -1,11 +1,11 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="base::head(title='分类 | Eros')"/>
-    <link rel="stylesheet" th:href="@{css/sort.css}"/>
+    <th:block th:include="common/head::head(title='分类 | Eros')"/>
+    <link rel="stylesheet" th:href="@{~/css/sort.css}"/>
 </head>
 <body>
-<th:block th:replace="base::masthead('sort')"/>
+<th:block th:replace="common/masthead::masthead('sort')"/>
 
 <div class="container">
     <div class="row">
@@ -14,17 +14,17 @@
                 <div class="blog-post">
                     <i class="fa fa-fw fa-chevron-down"></i>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a th:href="@{/sorts/{sortName}(sortName=${sort.sortName})}">
+                    <a th:href="@{/sort/{sortName}(sortName=${sort.name})}">
                         <strong>
-                            <th:block th:text="${sort.sortName}"/>
+                            <th:block th:text="${sort.name}"/>
                         </strong>
                     </a>
                     &nbsp;&nbsp;
-                    <span class="badge" th:text="${sort.articleList.size()}"></span>
+                    <span class="badge" th:text="${sort.articles.size()}"></span>
                     <br/><br/>
 
                     <div class="list-group">
-                        <th:block th:each="article: ${sort.articleList}">
+                        <th:block th:each="article: ${sort.articles}">
                             <li class="list-group-item sort-item">
                                 <div>
                                     <a th:href="@{/article/{id}(id=${article.id})}" th:title="${article.title}">
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="article-time">
                                     <img th:src="@{~/img/time.png}" alt="date" title="Date"/>
-                                    <th:block th:text="${article.date}"/>
+                                    <th:block th:text="${article.create_date}"/>
                                 </div>
                             </li>
                         </th:block>
@@ -42,10 +42,10 @@
             </th:block>
         </div>
 
-        <th:block th:replace="base::side"/>
+        <th:block th:replace="common/side::side"/>
     </div>
 </div>
 
-<th:block th:replace="base::footer"/>
+<th:block th:replace="common/footer::footer"/>
 </body>
 </html>

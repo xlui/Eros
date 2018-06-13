@@ -3,7 +3,6 @@ package style.dx.eros.entity;
 import style.dx.eros.util.DateUtils;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 import java.util.Date;
 
 public class Article  implements Serializable {

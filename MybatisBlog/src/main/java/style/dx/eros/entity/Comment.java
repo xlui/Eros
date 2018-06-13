@@ -12,6 +12,7 @@ public class Comment implements Serializable {
     private Date date;
     private Integer article_id;
     private Integer user_id;
+	private User user;
 
     public Comment() {
     }
@@ -68,4 +69,12 @@ public class Comment implements Serializable {
     public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

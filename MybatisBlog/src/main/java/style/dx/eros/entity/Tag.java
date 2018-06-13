@@ -1,11 +1,13 @@
 package style.dx.eros.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Tag implements Serializable {
     public static final long serialVersionID = 1L;
     private Integer id;
     private String name;
+	private List<Article> articles;
 
     public Tag() {
     }
@@ -35,4 +37,12 @@ public class Tag implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
 }

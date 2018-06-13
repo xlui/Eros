@@ -1,11 +1,11 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="base::head(title='标签 | Eros')"/>
+    <th:block th:include="common/head::head(title='标签 | Eros')"/>
     <link rel="stylesheet" th:href="@{~/css/tag.css}"/>
 </head>
 <body>
-<th:block th:replace="base::masthead('tag')"/>
+<th:block th:replace="common/masthead::masthead('tag')"/>
 
 <div class="container">
     <div class="row">
@@ -14,15 +14,17 @@
                 <div class="blog-post">
                     <span class="fa fa-fw fa-chevron-down"></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a th:href="@{/tags/{tagName}(tagName=${tag.tagName})}" th:title="${tag.tagName}">
-                        <strong><th:block th:text="${tag.getTagName()}"/></strong>
+                    <a th:href="@{/tag/{name}(name=${tag.name})}" th:title="${tag.name}">
+                        <strong>
+                            <th:block th:text="${tag.name}"/>
+                        </strong>
                     </a>
                     &nbsp;&nbsp;
-                    <span class="badge" th:text="${tag.articleList.size()}"></span>
+                    <span class="badge" th:text="${tag.articles.size()}"></span>
                     <br/><br/>
 
                     <div class="list-group">
-                        <th:block th:each="article: ${tag.articleList}">
+                        <th:block th:each="article: ${tag.articles}">
                             <li class="list-group-item">
                                 <div class="tag-item">
                                     <div>
@@ -32,7 +34,7 @@
                                     </div>
                                     <div class="article-time">
                                         <img th:src="@{~/img/time.png}" alt="date"/>
-                                        <th:block th:text="${article.date}"/>
+                                        <th:block th:text="${article.create_date}"/>
                                     </div>
                                 </div>
                             </li>
@@ -42,10 +44,10 @@
             </th:block>
         </div>
 
-        <th:block th:replace="base::side"/>
+        <th:block th:replace="common/side::side"/>
     </div>
 </div>
 
-<th:block th:replace="base::footer"/>
+<th:block th:replace="common/footer::footer"/>
 </body>
 </html>

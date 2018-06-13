@@ -9,11 +9,11 @@ import style.dx.eros.conf.Const;
 import style.dx.eros.service.ArticleService;
 
 @Controller
-public class NavigationController {
+public class IndexController {
     private final ArticleService articleService;
 
     @Autowired
-    public NavigationController(ArticleService articleService) {
+	public IndexController(ArticleService articleService) {
         this.articleService = articleService;
     }
 
