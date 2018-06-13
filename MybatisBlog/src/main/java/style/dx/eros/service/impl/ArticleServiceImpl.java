@@ -2,6 +2,7 @@ package style.dx.eros.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import style.dx.eros.entity.Article;
 import style.dx.eros.mapper.ArticleMapper;
@@ -25,10 +26,15 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleMapper.findAll();
 	}
 
-	@Override
-	@Cacheable(value = "articles", key = "'page-' + (#current * #pageSize + #pageSize)")
-	public List<Article> findAll(int current, int pageSize) {
-		return articleMapper.findAllWithPage(current, pageSize);
+    @Override
+    public int count() {
+        return articleMapper.count();
+    }
+
+    @Override
+    @Cacheable(value = "articles", key = "'page-' + (#pr.pageNumber * #pr.pageSize + #pr.pageNumber)")
+    public List<Article> findAllWithPage(PageRequest pr) {
+        return articleMapper.findAllWithPage(pr.getPageNumber() * pr.getPageSize(), pr.getPageSize());
 	}
 
 	@Override

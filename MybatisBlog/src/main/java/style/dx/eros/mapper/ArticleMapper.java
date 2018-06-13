@@ -10,6 +10,9 @@ import java.util.List;
 @Mapper
 @Component
 public interface ArticleMapper {
+    @Select("SELECT COUNT(*) FROM article")
+    int count();
+
     @Select("SELECT * FROM article")
     @Results({
             @Result(property = "id", column = "id", javaType = Integer.class),
@@ -27,7 +30,9 @@ public interface ArticleMapper {
 	@Select("SELECT * FROM article WHERE sort_id=#{id}")
 	List<Article> findBySortId(Integer id);
 
-	@Select("SELECT * FROM article WHERE id in (SELECT article_id FROM st_article_tag WHERE tag_id = #{id})")
+    @Select("SELECT a.id, a.title, a.content, a.create_date, a.update_date, a.sort_id " +
+            "FROM article AS a INNER JOIN st_article_tag AS t ON a.id = t.article_id " +
+            "WHERE t.tag_id = #{id}")
 	List<Article> findByTagId(Integer id);
 
 	@Select("SELECT * FROM article WHERE create_date < #{date} ORDER BY create_date DESC LIMIT 1")

@@ -50,7 +50,6 @@ public class ArticleController {
 		model.addAttribute("comment_form", new Comment());
 		model.addAttribute("previous", articleService.findDateBefore(DateUtils.toDate(article.getCreate_date())));
 		model.addAttribute("next", articleService.findDateAfter(DateUtils.toDate(article.getCreate_date())));
-		System.out.println(DateUtils.toDate(article.getCreate_date()));
 		return "article";
 	}
 }

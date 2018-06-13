@@ -14,6 +14,8 @@ public class Article  implements Serializable {
     private Date update_date;
     private Integer sort_id;
 
+    private Sort sort;
+
     public Article() {
     }
 
@@ -79,5 +81,13 @@ public class Article  implements Serializable {
 
     public void setSort_id(Integer sort_id) {
         this.sort_id = sort_id;
+    }
+
+    public Sort getSort() {
+        return sort;
+    }
+
+    public void setSort(Sort sort) {
+        this.sort = sort;
     }
 }

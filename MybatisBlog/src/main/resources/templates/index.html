@@ -23,50 +23,53 @@
                         <th:block th:text="${article.create_date}"/>
                         |
                         <i class="fa fa-fw fa-folder"></i>&nbsp;分类于&nbsp;
-                        <!--<a th:href="@{~/sorts/{sortName}(sortName=${article.sort.sortName})}" th:text="${article.sort.sortName}"></a>-->
+                        <a th:href="@{~/sorts/{sortName}(sortName=${article.sort.name})}"
+                           th:text="${article.sort.name}"></a>
                     </p>
 
                     <span class="content" th:text="${article.content}"></span>
                 </div>
             </th:block>
 
-            <!--<nav>-->
-                <!--<div class="pager">-->
-                    <!--<hr/>-->
-                    <!--&lt;!&ndash; number 从 0 开始计算，page 从 0 + 1 开始计算&ndash;&gt;-->
-                    <!--&lt;!&ndash; 所以上一页的 page = number &ndash;&gt;-->
-                    <!--&lt;!&ndash; 下一页的 page = number + 2 &ndash;&gt;-->
-                    <!--<ul>-->
-                        <!--<th:block th:if="!${articles.first}">-->
-                            <!--<a th:href="@{/page/{p}(p=${articles.number})}">-->
-                                <!--<span class="fa fa-fw fa-chevron-left"></span>-->
-                            <!--</a>-->
-                        <!--</th:block>-->
-                        <!--&nbsp;&nbsp;-->
+            <nav>
+                <div class="pager">
+                    <hr/>
+                    <!-- Page.number 是从 0 开始计算的，page 从 0 + 1 开始计算-->
+                    <!-- 所以上一页的 page = number -->
+                    <!-- 下一页的 page = number + 2 -->
+                    <ul>
+                        <!-- 如果当前页不是第一页，加载图标 -->
+                        <th:block th:if="${page} != 0">
+                            <a th:href="@{/page/{p}(p=${page})}">
+                                <span class="fa fa-fw fa-chevron-left"></span>
+                            </a>
+                        </th:block>
+                        &nbsp;&nbsp;
 
-                        <!--<li th:each="page: ${#numbers.sequence(1, articles.totalPages)}">-->
-                            <!--<th:block th:switch="${page}">-->
-                                <!--<th:block th:case="${articles.number + 1}">-->
-                                    <!--<span class="page-number current" th:text="${page}"></span>-->
-                                <!--</th:block>-->
-                                <!--<th:block th:case="*">-->
-                                    <!--<a th:href="@{/page/{p}(p=${page})}" class="page-number" th:text="${page}"></a>-->
-                                <!--</th:block>-->
-                            <!--</th:block>-->
-                            <!--<th:block th:if="!${page == articles.totalPages}">-->
-                                <!--&nbsp;&nbsp;-->
-                            <!--</th:block>-->
-                        <!--</li>-->
+                        <li th:each="iter: ${#numbers.sequence(1, total + 1)}">
+                            <th:block th:switch="${iter}">
+                                <th:block th:case="${page + 1}">
+                                    <span class="page-number current" th:text="${iter}"></span>
+                                </th:block>
+                                <th:block th:case="*">
+                                    <a th:href="@{/page/{p}(p=${iter})}" class="page-number" th:text="${iter}"></a>
+                                </th:block>
+                            </th:block>
+                            <th:block th:if="!${page == total}">
+                                &nbsp;&nbsp;
+                            </th:block>
+                        </li>
 
-                        <!--&nbsp;&nbsp;-->
-                        <!--<th:block th:if="!${articles.last}">-->
-                            <!--<a th:href="@{/page/{p}(p=${articles.number} + 2)}">-->
-                                <!--<span class="fa fa-fw fa-chevron-right"></span>-->
-                            <!--</a>-->
-                        <!--</th:block>-->
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</nav>-->
+                        &nbsp;&nbsp;
+                        <!-- 如果当前页不是最后一页，加载图标 -->
+                        <th:block th:if="${page != total}">
+                            <a th:href="@{/page/{p}(p=${page} + 2)}">
+                                <span class="fa fa-fw fa-chevron-right"></span>
+                            </a>
+                        </th:block>
+                    </ul>
+                </div>
+            </nav>
         </div>
 
         <th:block th:replace="common/side::side"/>

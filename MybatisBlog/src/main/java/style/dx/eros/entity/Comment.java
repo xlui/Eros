@@ -12,7 +12,8 @@ public class Comment implements Serializable {
     private Date date;
     private Integer article_id;
     private Integer user_id;
-	private User user;
+
+    private User user;
 
     public Comment() {
     }
