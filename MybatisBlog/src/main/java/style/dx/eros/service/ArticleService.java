@@ -7,9 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 public interface ArticleService extends CommonService<Article, Integer> {
-    int count();
+	int count();
 
-    List<Article> findAllWithPage(PageRequest pageRequest);
+	List<Article> findAllWithPage(PageRequest pageRequest);
 
 	List<Article> findBySortId(Integer sortId);
 

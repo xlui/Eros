@@ -16,32 +16,32 @@ import java.util.List;
 
 @Controller
 public class IndexController {
-    private final ArticleService articleService;
-    private final SortService sortService;
+	private final ArticleService articleService;
+	private final SortService sortService;
 
-    @Autowired
-    public IndexController(ArticleService articleService, SortService sortService) {
-        this.articleService = articleService;
-        this.sortService = sortService;
-    }
+	@Autowired
+	public IndexController(ArticleService articleService, SortService sortService) {
+		this.articleService = articleService;
+		this.sortService = sortService;
+	}
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model model) {
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index(Model model) {
 		prepareArticleWithPage(1, model);
-        return "index";
-    }
+		return "index";
+	}
 
-    @RequestMapping(value = "/page/{p}", method = RequestMethod.GET)
-    public String getPage(@PathVariable(value = "p") int page, Model model) {
-        prepareArticleWithPage(page, model);
-        return "index";
-    }
+	@RequestMapping(value = "/page/{p}", method = RequestMethod.GET)
+	public String getPage(@PathVariable(value = "p") int page, Model model) {
+		prepareArticleWithPage(page, model);
+		return "index";
+	}
 
-    private void prepareArticleWithPage(int page, Model model) {
-        List<Article> articles = articleService.findAllWithPage(new PageRequest(page - 1, Const.defaultPageSize));
-        articles.forEach(article -> article.setSort(sortService.findById(article.getSort_id())));
-        model.addAttribute("articles", articles);
-        model.addAttribute("page", page - 1);
-        model.addAttribute("total", articleService.count() / Const.defaultPageSize);
-    }
+	private void prepareArticleWithPage(int page, Model model) {
+		List<Article> articles = articleService.findAllWithPage(new PageRequest(page - 1, Const.defaultPageSize));
+		articles.forEach(article -> article.setSort(sortService.findById(article.getSort_id())));
+		model.addAttribute("articles", articles);
+		model.addAttribute("page", page - 1);
+		model.addAttribute("total", articleService.count() / Const.defaultPageSize);
+	}
 }

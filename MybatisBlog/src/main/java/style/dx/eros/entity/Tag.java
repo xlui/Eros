@@ -4,40 +4,40 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Tag implements Serializable {
-    public static final long serialVersionID = 1L;
-    private Integer id;
-    private String name;
+	public static final long serialVersionID = 1L;
+	private Integer id;
+	private String name;
 
-    private List<Article> articles;
+	private List<Article> articles;
 
-    public Tag() {
-    }
+	public Tag() {
+	}
 
-    public Tag(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public Tag(Integer id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    @Override
-    public String toString() {
-        return "Tag[id=" + id + ", name=" + name + "]";
-    }
+	@Override
+	public String toString() {
+		return "Tag[id=" + id + ", name=" + name + "]";
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public List<Article> getArticles() {
 		return articles;

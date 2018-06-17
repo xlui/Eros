@@ -26,15 +26,15 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleMapper.findAll();
 	}
 
-    @Override
-    public int count() {
-        return articleMapper.count();
-    }
+	@Override
+	public int count() {
+		return articleMapper.count();
+	}
 
-    @Override
-    @Cacheable(value = "articles", key = "'page-' + (#pr.pageNumber * #pr.pageSize + #pr.pageNumber)")
-    public List<Article> findAllWithPage(PageRequest pr) {
-        return articleMapper.findAllWithPage(pr.getPageNumber() * pr.getPageSize(), pr.getPageSize());
+	@Override
+	@Cacheable(value = "articles", key = "'page-' + (#pr.pageNumber * #pr.pageSize + #pr.pageNumber)")
+	public List<Article> findAllWithPage(PageRequest pr) {
+		return articleMapper.findAllWithPage(pr.getPageNumber() * pr.getPageSize(), pr.getPageSize());
 	}
 
 	@Override

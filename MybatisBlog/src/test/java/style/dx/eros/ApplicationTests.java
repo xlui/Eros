@@ -14,4 +14,8 @@ public class ApplicationTests {
         System.out.println("This is a simple test and you pass it!");
     }
 
+	@Test
+	public void test() {
+		System.out.println("This is another test...");
+	}
 }

@@ -1,11 +1,16 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="base::head(title=${user.getUsername()} + ' | Eros')"/>
+    <th:block th:include="common/head::head(title=${user.getUsername()} + ' | Eros')"/>
 </head>
 <body>
 <div style="text-align: center;padding-top: 50px;font-size: 32px">
     Hello <th:block th:text="${user.username}"/>!
+    <br/>
+    This is your own page. But now you cannot do much things here.
+    <br/>
+    If you want to help development, go to <a href="https://github.com/xlui/Eros" target="_blank">https://github.com/xlui/Eros</a>
+    plz :)
 </div>
 </body>
 </html>

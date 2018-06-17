@@ -1,7 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="base::head(title='登录 | Eros')"/>
+    <th:block th:include="common/head::head(title='登录 | Eros')"/>
     <link rel="stylesheet" th:href="@{~/css/login.css}"/>
 </head>
 <body>
@@ -11,14 +11,8 @@
           th:object="${user}" method="post">
         <a th:href="@{/}"><h1 align="center" class="form-signin-heading">Eros</h1></a>
         <br/>
-        <th:block th:if="${register}">
-            <th:block th:replace="base::prompt('注册成功！')"/>
-        </th:block>
         <th:block th:if="${msg}">
-            <th:block th:replace="base::prompt(${msg})"/>
-        </th:block>
-        <th:block th:if="(!${register}) and (!${forget})">
-            <br/>
+            <th:block th:replace="common/prompt::prompt(${msg})"/>
         </th:block>
         <label for="username" class="sr-only">用户名：</label>
         <input id="username" class="form-control" type="text" th:field="*{username}" placeholder="username"
@@ -37,10 +31,10 @@
         <a th:href="@{/}"><h1 align="center" class="form-signin-heading">Eros</h1></a>
         <br/>
         <th:block th:if="${register == true}">
-            <th:block th:replace="base::prompt('注册成功！')"/>
+            <th:block th:replace="common/prompt::prompt('注册成功！')"/>
         </th:block>
         <th:block th:if="${msg}">
-            <th:block th:replace="base::prompt(${msg})"/>
+            <th:block th:replace="common/prompt::prompt(${msg})"/>
         </th:block>
         <!--<th:block th:if="${forget}">-->
         <!--&lt;!&ndash;<th:block th:replace="base::prompt('成功修改密码！')"/>&ndash;&gt;-->
@@ -61,5 +55,6 @@
         <a th:href="@{/forget}" style="float: right;">忘记密码？</a>
     </form>
 </div>
+<script th:src="@{~/css/bootstrap/js/bootstrap.js}"></script>
 </body>
 </html>
