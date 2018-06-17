@@ -1,4 +1,4 @@
-USE `eros`;
+# USE `eros`;
 
 # Drop Table
 

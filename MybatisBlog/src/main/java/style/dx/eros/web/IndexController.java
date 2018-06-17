@@ -27,7 +27,7 @@ public class IndexController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
-        prepareArticleWithPage(0, model);
+		prepareArticleWithPage(1, model);
         return "index";
     }
 

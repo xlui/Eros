@@ -1,5 +1,6 @@
 package style.dx.eros.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
@@ -15,4 +16,10 @@ public interface UserMapper {
 
 	@Select("SELECT * FROM user WHERE id = #{id}")
 	User findById(Integer id);
+
+	@Select("SELECT * FROM user WHERE username = #{username}")
+	User findByUsername(String username);
+
+	@Insert("INSERT INTO user(username, password, avatar, nickname) VALUES(#{username}, #{password}, #{avatar}, #{nickname})")
+	void save(User user);
 }

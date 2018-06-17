@@ -29,4 +29,14 @@ public class UserServiceImpl implements UserService {
 	public User findById(Integer id) {
 		return userMapper.findById(id);
 	}
+
+	@Override
+	public User findByUsername(String username) {
+		return userMapper.findByUsername(username);
+	}
+
+	@Override
+	public void save(User user) {
+		userMapper.save(user);
+	}
 }
